@@ -1,0 +1,197 @@
+@media (min-width:320px)  { /* smartphones, iPhone, portrait 480x320 phones */ 
+body:: before{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+
+
+}
+@media (min-width:481px)  { /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ 
+    body:: before{
+        height: 100%;
+        width: 100%;
+        margin: 0;
+    }
+    
+    
+    
+
+
+}
+@media (min-width:641px)  { /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */ 
+    body:: before{
+        height: 100%;
+        width: 100%;
+        margin: 0;
+    }
+    
+    
+    
+
+
+}
+@media (min-width:961px)  { /* tablet, landscape iPad, lo-res laptops ands desktops */ 
+
+    body:: before{
+        height: 100%;
+        width: 100%;
+        margin: 0;
+    }
+    
+    
+    
+
+}
+@media (min-width:1025px) { /* big landscape tablets, laptops, and desktops */
+
+    body:: before{
+        height: 100%;
+        width: 100%;
+        margin: 0;
+    }
+    
+    
+    
+
+}
+@media (min-width:1281px) { /* hi-res laptops and desktops */
+
+    body:: before{
+        height: 100%;
+        width: 100%;
+        margin: 0;
+    }
+    
+    
+    
+
+}
+
+body{
+    background-color:white;
+    margin: 0;
+    display: block;
+    background: linear-gradient(to bottom, rgba(216, 230, 64, 0.8), rgba(216, 230, 64, 0.8)), url(../images/business.jpg);
+}
+
+.landing-fullpage{
+    
+    max-height: 100%;
+    max-width:100%;
+    min-height: 100vh;
+    /* background: linear-gradient(to right, rgba(99, 255, 60, 0.8), rgb(255,255,255, .3)), url(../images/debt.png); */
+   
+
+    background-repeat: no-repeat;
+    background-size: 90% 47%;
+    background-attachment: fixed;
+    background-position: center; 
+
+    overflow-y: hidden;
+    position: relative;
+    text-align: center;
+   
+
+}
+
+.landing-fullpage img{
+    width: 90%;
+    height: 80%;
+    margin-top: 20%;
+
+}
+.sari2{
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 100vh;
+    min-width: 100vh;
+ 
+     
+}
+.signupform{
+    width: 80%;
+    height: 100%;
+    border: 1px solid white;
+    background: linear-gradient(to left, rgba(99, 255, 60, 0.3), rgb(255,255,255, .5));
+    border-radius: 10px;
+    padding: 20px;
+    display: inline-block;
+
+}
+.signupform input{
+    border-radius: 15px;
+    padding: 5px;
+    min-width:95%;
+    margin-bottom: 10px;
+    outline: none;
+    text-decoration: none;
+    display: block;
+    
+
+}
+.signupform a {
+    font: bold 12px Arial;
+  text-decoration: none;
+  background-color:white;
+  color: gray;
+  width: 100%;
+  padding: 5px 25px 5px 25px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  border-radius: 30px;
+}
+
+.signupdiv{
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 20%;
+    width: 100%;
+    height: 40%;
+}
+/* .fullpage-wrapper{
+    min-height: 100vh;
+    min-width: 100vh;
+    z-index: 1;
+    background: linear-gradient(blue, pink);
+    position: absolute;
+
+} */
+
+.signup-button{
+    min-width: 100%;
+    width: 100%;
+    height: 5%;
+    position: fixed;
+    bottom: 6%;
+    background-color: white ;
+    color: rgb(128, 209, 7);
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 12px 10px 0 10px;
+    font-size: 20px;
+    outline: none;
+    text-decoration: none;
+    display: block;
+}
+.login-button{
+    min-width: 100%;
+    width: 100%;
+    height: 5%;
+    position: fixed;
+    bottom: 0;
+    color: white;
+    background-color: rgb(128, 209, 7) ;
+    
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 12px 10px 0 10px;
+    font-size: 20px;
+    outline: none;
+    text-decoration: none;
+    display: block;
+
+}
