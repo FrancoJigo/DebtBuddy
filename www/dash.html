@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Your app title -->
+    <title>DebtBuddy</title>
+
+    <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
+        http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
+     -->
+
+    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="stylesheet" href="css/framework7-icons.css">
+</head>
+
+<body>
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
+
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block">
+            <h2>Rea Pagara</h2>
+            <h4>rea.pagara@sample.com</h4>
+            <p><a href="#">Home</a></p>
+            <p><a href="#">Profile</a></p>
+            <p><a href="#">Debtors</a></p>
+            <p><a href="#">Activity Logs</a></p>
+        </div>
+    </div>
+
+    <!-- Views -->
+    <div class="views">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Top Navbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                    <div class="left sliding">DebtBuddy</div>
+                    <div class="right">
+                        <a href="#" class="link icon-only open-panel"><i class="f7-icons">bars</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages navbar-through toolbar-through">
+                <!-- Page, "data-page" contains page name -->
+                <div data-page="dash" class="page">
+                    <!-- Scrollable page content -->
+                    <div class="page-content">
+                    	
+                        <div class="content-block">
+
+<h2>Dashboard</h2>
+<div data-centered-slides="true" class="swiper-container swiper-init demo-swiper demo-swiper-auto">
+  <div class="swiper-pagination"></div>
+  <div class="swiper-wrapper">
+
+    <div class="swiper-slide"> <img src="images/store.jpg" style="width: 330px;"></div>
+    <div class="swiper-slide"> <img src="images/store2.jpg" style="width: 330px;"></div>
+    <div class="swiper-slide"> <img src="images/store3.jpg" style="width: 330px;"></div>
+    <div class="swiper-slide"> <img src="images/store4.png" style="width: 330px;"></div>
+    <div class="swiper-slide"> <img src="images/hand.jpg" style="width: 330px;"></div>
+    <div class="swiper-slide"> <img src="images/hand2.jpg" style="width: 330px;"></div>
+    <div class="swiper-slide"> <img src="images/hand3.jpg" style="width: 330px;"></div>
+    <div class="swiper-slide"> <img src="images/hand4.jpg" style="width: 330px;"></div>
+  </div>
+</div>
+
+   <h3>How it works</h3>
+<div class="card">
+
+  <div class="card-content card-content-padding">This is a simple card with plain text, but cards can also contain their own header, footer, list view, image, or any other element. This is a simple card with plain text, but cards can also contain their own header, footer, list view, image, or any other element. This is a simple card with plain text, but cards can also contain their own header, footer, list view, image, or any other element. footer, list view, image, or any other element. This is a simple card with plain text, but cards can also contain their own header, footer, list view, image, or any other element.</div>
+</div>
+
+
+<div class="block-title">About Us</div>
+<div class="block">
+  <p>Here comes paragraph within content block. Donec et nulla auctor massa pharetra adipiscing ut sit amet sem. Suspendisse molestie velit vitae mattis tincidunt. Ut sit amet quam mollis, vulputate turpis vel, sagittis felis. </p>
+</div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
+
+
+
+
+        </div>
+    </div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/my-app.js"></script>
+</body>
+
+</html>
