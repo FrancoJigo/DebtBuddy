@@ -6,36 +6,85 @@
             <title>Debt Buddy</title>
             <link rel="stylesheet" href="css/registration.css">
             <link rel="stylesheet" href="css/fontawesome-free-5.4.2-web/css/all.css">
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-
-
-
-    </head>
-    <body>
+            <link rel="stylesheet" href="css/jquery.mobile.custom.structure.css">
+            <link rel="stylesheet" href="css/jquery.mobile.custom.structure.min.css">
+           
             
            
+
+    </head>
+    <body >
+            
+          
         <div class="registration-fullpage">
             <img src="images/debt.png">
-            <div class="signup-form">
-                    <i class="fa fa-user"></i>
-                    <input type="text" placeholder="First name">
-                    <i class="fa fa-user"></i>
-                    <input placeholder="Last name">
-                    <i class="fa fa-at"></i>
-                    <input placeholder="Username">
-                    <i class="fa fa-key"></i>
-                    <input placeholder="Password">
-              <ul>
-                <li><a class="gmailbutton" >Go</a></li>
+            <form  id="signupform" class="signup-form">
                 
-            </ul> 
-            <!-- <a class="signupbutton" href="registration.html">Sign up</a> -->
+                    <i class="fa fa-user"></i>
+                    <input id="firstname" type="text" placeholder="First name">
+                    <i class="fa fa-user"></i>
+                    <input id="lastname" type="text" placeholder="Last name">
+                    <i class="fa fa-at"></i>
+                    <input id="username" type="text" placeholder="Username">
+                    <i class="fa fa-key"></i>
+                    <input id="password" type="text" placeholder="Password">
+                    <input id="signup" type="button" value="Click">
 
-
-            </div>
+           
+            </form>
 
     </div>
        
+      
 
     </body>
+  <script src="js/registration.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+
+   <script type="text/javascript">
+        $( document ).ready(function() {
+            //alert( "ready!" );
+            $(document).on('click','#signup', function(){
+                
+                var form = document.getElementById('signupform');
+                var firstname = document.getElementById('firstname').value;
+                var lastname = document.getElementById('lastname').value;
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value;
+                alert(firstname);
+                if(firstname != "" && lastname != "" && username != "" && password != ""){
+                    var regdata = {
+                        "first_name":firstname, 
+                        "last_name":lastname, 
+                        "username":username, 
+                        "password": password
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "https://debtbuddy.herokuapp.com/createUser",
+                        data: JSON.stringify(regdata),
+                        dataType: "json",
+                        contentType: "application/json",
+                        success: function(result){
+                            alert("registered");
+                            location.href = "dashboard.html"
+                        },
+                        error: function(result){
+                            //alert("error Cannot Post");
+                        }
+                    })
+                }
+                else{
+                    alert("Fill up all forms");
+                }
+        
+               })
+        });
+      
+   
+   </script>
+  
+    
+
 </html>

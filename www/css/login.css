@@ -1,5 +1,8 @@
 body{
-    background: linear-gradient(to bottom, rgba(216, 230, 64, 0.8), rgba(216, 230, 64, 0.8)), url(../images/business.jpg);
+    /* background: linear-gradient(to bottom, rgba(216, 230, 64, 0.8), rgba(216, 230, 64, 0.8)), url(../images/aaa2.png); */
+    background-image: url(../images/aaa2.png);
+    background-size: 100% 100%; 
+    padding: 0;
 
     margin: 0;
 
@@ -8,19 +11,22 @@ body{
 
 .signup-form{
     min-width: 100%;
-    height: 45%;
+    height: 40%;
     margin-left: 0;
     position: fixed;
     bottom: 0;
-    background-color: rgb(128, 209, 7, .9) ;
+    padding-top: 10%;   
+    background-color: rgba(28, 206, 255, 0.4) ;
     color: white;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
-    background: linear-gradient(to bottom, rgba(216, 230, 64, 0.8), rgba(77, 174, 8, 0.9)), url(../images/business.jpg);
+    /* background: linear-gradient(to bottom, rgba(216, 230, 64, 0.8), rgba(77, 174, 8, 0.9)), url(../images/business.jpg); */
     font-size: 20px;
     outline: none;
     text-decoration: none;
     text-align: center;
+    /* border-top-left-radius: 40%;
+    border-top-right-radius: 10%; */
     
 }
 
@@ -43,8 +49,9 @@ body{
 }
 
 .registration-fullpage img{
-    width: 90%;
-    height: 80%;
+    margin-top: 20%;
+    width: 70%;
+    height: 60%;
     
 
 }
