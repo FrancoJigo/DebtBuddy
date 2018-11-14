@@ -49,6 +49,7 @@ $(document).ready(function(){
                  contentType: "application/json",
                  success: function(result){
                      alert("registered");
+                     localStorage.setItem('token', json.token);
                      document.getElementById('firstname').value = ''
                      document.getElementById('lastname').value = ''
                      document.getElementById('username').value = ''
@@ -87,7 +88,7 @@ $(document).ready(function(){
                     contentType: "application/json",
                     success: function(result){
                         alert("signed in");
-                        
+                        localStorage.setItem('token', json.token);
                         document.getElementById('username').value = ''
                         document.getElementById('password').value = ''
                         location.href = "dash.html"
