@@ -153,10 +153,11 @@ body{
     display: block;
     background-color: rgba(241, 119, 210, 0.5);
     /* height: 45%; */
-    border-right: 1px solid rgba(241, 119, 210, 0.5); 
-    border-top: 1px solid rgba(241, 119, 210, 0.5); 
-    border-bottom: 1px solid rgba(241, 119, 210, 0.5);
-    border-left:  1px solid rgba(241, 119, 210, 0.5);
+    border-right: 1px solid white;
+    border-top: 1px solid  white;
+
+    border-bottom: 1px solid white;
+    border-left:  1px solid white;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     color: white;
@@ -178,10 +179,15 @@ body{
     margin-top: 5%;
     background-color: rgba(241, 119, 210, 0);
     /* height: 45%; */
-    border-right: 1px solid rgba(241, 119, 210, 0.5); 
+    /* border-right: 1px solid rgba(241, 119, 210, 0.5); 
     border-top: 1px solid rgba(241, 119, 210, 0.5); 
     border-bottom: 1px solid rgba(241, 119, 210, 0.5);
-    border-left:  1px solid rgba(241, 119, 210, 0.5);
+    border-left:  1px solid rgba(241, 119, 210, 0.5); */
+    border-right: 1px solid white;
+    border-top: 1px solid  white;
+
+    border-bottom: 1px solid white;
+    border-left:  1px solid white;
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
     color: white;

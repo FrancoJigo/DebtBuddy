@@ -26,7 +26,7 @@
 
            <div id="loginmodal" class="loginmodal">
                 <h1 class="loginword">Login</h1>
-                <form style="margin-top: 10%;"  id="signupform" class="signup-form">
+                <form style="margin-top: 10%;"  id="loginform" class="signup-form">
                  
                      
                      
@@ -69,35 +69,6 @@
     </body>
     <!-- <script src="js/jquery-ui-1.12.1/jquery-ui.js" ></script> -->
     <script src="js/jquery-3.3.1.min.js" ></script>
-    <script>
-        $(document).ready(function(){
-           // $('#signupmodal').show('slow');
-            $('#signupbutton').css("box-shadow", "0px 13px 10px  rgba(49, 49, 49, 0.3)");
-           $('#signupbutton').css("background-color", "rgba(241, 119, 210, 0.5)");
+    <script src="js/index.js" ></script>
 
-            // $('#loginmodal').css("display", "none");
-            $(document).on('click', '#signupbutton', function(){
-                $('#signupbutton').css("box-shadow", "0px 13px 10px  rgba(49, 49, 49, 0.3)");
-                $('#signupbutton').css("background-color", "rgba(241, 119, 210, 0.5)");
-                $('#loginbutton').css("background-color", "rgba(241, 119, 210, 0)");
-                $('#loginbutton').css("box-shadow", "none")
-                $('#signupmodal').show('slow');
-                $('#loginmodal').hide();
-               // $('#signupmodal').css("display", "block");
-                //$('#loginmodal').css("display", "none");
-            })
-            $(document).on('click','#loginbutton', function(){
-               // $('#loginmodal').css("display", "block");
-               // $('#signupmodal').css("display", "none");
-               $('#loginbutton').css("box-shadow", "0px 13px 10px  rgba(49, 49, 49, 0.3)");
-               $('#loginbutton').css("background-color", "rgba(241, 119, 210, 0.5)");
-               $('#signupbutton').css("background-color", "rgba(241, 119, 210, 0)");
-               $('#signupbutton').css("box-shadow", "none");
-               $('#loginmodal').show('slow');
-                $('#signupmodal').hide();
-
-
-            });
-        });
-    </script>
 </html>
