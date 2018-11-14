@@ -37,7 +37,7 @@
                 <li><a href="debtor.html"><span class="glyphicon glyphicon-list-alt"></span>&emsp;Debtors</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                 <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>&emsp;Logout</a></li>
+                 <li><a href="#" id="logout" type="submit" ><span class="glyphicon glyphicon-log-out"></span>&emsp;Logout</a></li>
             </ul>
         </div>
     </div>
@@ -93,7 +93,7 @@
 <hr>
 
 <div class="card">
-   <h1>hljkhgsgkji</h1>
+   <h1>H1 ni sya besssss</h1>
 </div>
 
 
@@ -105,6 +105,23 @@
 
 
 </div>
+<script>
+  $(document).ready(function() {
+    // show a dialog box when clicking on a link
+    $("#logout").on('click', function(e) {
+        e.preventDefault();
+        $.Zebra_Dialog('<strong>Do you want to Logout?</strong>', {
+            'type':     'question',
+            'title':    'Non-uniformed Personnel (NUP)',
+            'buttons':  [
+                            {caption: 'Yes', callback: function() { alert('"Yes" was clicked')}},
+                            {caption: 'No', callback: function() { alert('"No" was clicked')}},
+                            {caption: 'Cancel', callback: function() { alert('"Cancel" was clicked')}}
+                        ]
+        });
+    });
+ });
+</script>
 
 </body>
 </html>

@@ -70,9 +70,9 @@ $(document).ready(function(){
 
         $(document).on('click','#login', function(){
             var form = document.getElementById('loginform');
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-            alert(username);
+            var username = document.getElementById('username1').value;
+            var password = document.getElementById('password1').value;
+            alert(password);
             $("#login",form).attr("disabled","disabled");
             if(username != "" && password != ""){
                 var logindata = {
@@ -86,15 +86,17 @@ $(document).ready(function(){
                     data: JSON.stringify(logindata),
                     dataType: "json",
                     contentType: "application/json",
+                    headers: {"Authorization": localStorage.getItem('token')},
                     success: function(result){
                         alert("signed in");
-                        localStorage.setItem('token', json.token);
+                       localStorage.setItem('token', logindata.token);
                         document.getElementById('username').value = ''
                         document.getElementById('password').value = ''
                         location.href = "dash.html"
                     },
                     error: function(result){
-                        //alert("error Cannot Post");
+                    
+                        alert("error Cannot Login");
                     }
                 });
                 // $.post("http://debtbuddy.herokuapp.com/login?returnformat=json", {"username":username, "password":password}, function(res) {
