@@ -16,7 +16,8 @@
   <script src="js/sidebarNavigation.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
 
-  
+  <script>window.jQuery || document.write('<script src="path/to/jquery-3.3.1.js"><\/script>')</script>
+<script src="../node_modules/zebra_dialog/dist/zebra_dialog.min.js"></script>
 </head>
 
 <body>
@@ -37,7 +38,7 @@
                 <li><a href="debtor.html"><span class="glyphicon glyphicon-list-alt"></span>&emsp;Debtors</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                 <li><a href="#" id="logout" type="submit" ><span class="glyphicon glyphicon-log-out"></span>&emsp;Logout</a></li>
+                 <li><a href="index.html" id="logout" type="submit" ><span class="glyphicon glyphicon-log-out"></span>&emsp;Logout</a></li>
             </ul>
         </div>
     </div>
@@ -108,17 +109,19 @@
 <script>
   $(document).ready(function() {
     // show a dialog box when clicking on a link
-    $("#logout").on('click', function(e) {
-        e.preventDefault();
-        $.Zebra_Dialog('<strong>Do you want to Logout?</strong>', {
-            'type':     'question',
-            'title':    'Non-uniformed Personnel (NUP)',
-            'buttons':  [
-                            {caption: 'Yes', callback: function() { alert('"Yes" was clicked')}},
-                            {caption: 'No', callback: function() { alert('"No" was clicked')}},
-                            {caption: 'Cancel', callback: function() { alert('"Cancel" was clicked')}}
-                        ]
-        });
+    $('a#logout').on('click', function(e) {
+      e.preventDefault();
+    
+      var isConfirmed = $.confirm({
+        title: 'Logout Confirmation',
+        content: 'Are you sure you want to logout?',
+        buttons: {
+          confirm: function() {
+            window.location.href = "index.html";
+          },
+          cancel: function() {},
+        }
+      });
     });
  });
 </script>
