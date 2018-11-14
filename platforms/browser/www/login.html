@@ -7,7 +7,9 @@
             <link rel="stylesheet" href="css/login.css">
             <link rel="stylesheet" href="css/fontawesome-free-5.4.2-web/css/all.css">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+            <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+          
 
 
 
@@ -17,22 +19,54 @@
         
         <div class="registration-fullpage">
                 <img src="images/debt.png">
-                <div class="signup-form">
+                <form id="loginform" class="signup-form">
                         <i class="fa fa-at"></i>
-                        <input placeholder="Username">
+                        <input id="username" placeholder="Username">
                         <i class="fa fa-key"></i>
-                    <input placeholder="Password">
-                  <ul>
-                    <li><a class="gmailbutton" >Login</a></li>
-                    
-                </ul> 
-                <!-- <a class="signupbutton" href="registration.html">Sign up</a> -->
+                    <input id="password" placeholder="Password">
+                    <input id="login" type="button" value="Login">
 
 
-                </div>
+                </form>
+
 
         </div>
-        
+
+    
+  <script type="text/javascript">
+    $( document ).ready(function() {
+        alert( "ready!" );
+        $(document).on('click','#login', function(){
+            var form = document.getElementById('loginform');
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            alert(username);
+            $("#login",form).attr("disabled","disabled");
+            if(username != "" && password != ""){
+                $.post("http://debtbuddy.herokuapp.com/login?returnformat=json", {"username":username, "password":password}, function(res) {
+                    if(res == true) {
+                        //store
+                        window.localStorage["username"] = username;
+                        window.localStorage["password"] = password;        			
+                        alert("Success");
+                        location.href = "dashboard.html"
+
+                    } else {
+                        alert("Your login failed", function() {});
+                    }
+                    $("#login").removeAttr("disabled");
+                },"json");
+            }
+            else{
+                alert("Fill up all forms");
+            }
+            });
+    });
+</script>
+
 
     </body>
+
+
+
 </html>

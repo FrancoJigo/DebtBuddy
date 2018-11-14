@@ -4,19 +4,71 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0 , user-scalable=no">
         <title>Debt Buddy</title>
-        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/newindex.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
+       
     </head>
     <body>
-            
-            <div class="landing-fullpage">
-            
-                    <img src="images/debt.png">
-                <a class="login-button" href="registration.html" >Sign up</a>
-                <a class="signup-button" href="login.html" >Login</a>
+           <div class="upperdiv">
 
-            </div>
-    
-        <script type="text/javascript" src="cordova.js"></script>
-        <script src="js/index.js"></script>
+
+           </div>
+           <div class="sidediv">
+               <button id="signupbutton" type="button" value="" class="signupbutton">S<br>i<br>g<br>n<br><br>u<br>p</button>
+                <button id="loginbutton" type="button" value="" class="loginbutton">L<br>o<br>g<br>i<br>n</button>
+               
+           </div>
+
+           <div class="lowerdiv">
+
+           </div>
+
+           <div id="loginmodal" class="loginmodal">
+                <h1 class="loginword">Login</h1>
+                <form style="margin-top: 10%;"  id="loginform" class="signup-form">
+                 
+                     
+                     
+                     <h6> <i style="margin-right: 5px" class="fa fa-at"></i>Username</h6>
+                     <input id="username1" type="text" placeholder="">
+                     
+                     <h6><i style="margin-right: 5px" class="fa fa-key"></i>Password</h6>
+                     <input id="password1" type="text" placeholder="">
+                    
+ 
+            
+             </form>
+             <input id="login" class="loginbutton2" type="button" value="Login">
+              
+           </div>
+           <div id="signupmodal" class="signupmodal">  
+               <h1 class="signupword">Sign up</h1>
+               <form  id="signupform" class="signup-form">
+                
+                    
+                    <h6><i style="margin-right: 5px" class="fa fa-user"></i>First name </h6>
+                    <input id="firstname" type="text" placeholder="">
+                   
+                    <h6> <i style="margin-right: 5px" class="fa fa-user"></i>Last name</h6>
+                    <input id="lastname" type="text" placeholder="">
+                   
+                    <h6> <i style="margin-right: 5px" class="fa fa-at"></i>Username</h6>
+                    <input id="username" type="text" placeholder="">
+                    
+                    <h6><i style="margin-right: 5px" class="fa fa-key"></i>Password</h6>
+                    <input id="password" type="text" placeholder="">
+                   
+
+           
+            </form>
+            <input id="signup" class="signupbutton2" type="button" value="Sign up">
+        </div>
+        <!-- <script type="text/javascript" src="cordova.js"></script> -->
+        <!-- <script src="js/index.js"></script> -->
     </body>
+    <!-- <script src="js/jquery-ui-1.12.1/jquery-ui.js" ></script> -->
+    <script src="js/jquery-3.3.1.min.js" ></script>
+    <script src="js/index.js" ></script>
+
 </html>

@@ -68,12 +68,25 @@ body:: before{
     
 
 }
+.fullpage-wrapper{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    
+
+}
 
 body{
     background-color:white;
     margin: 0;
     display: block;
-    background: linear-gradient(to bottom, rgba(216, 230, 64, 0.8), rgba(216, 230, 64, 0.8)), url(../images/business.jpg);
+        /* background: linear-gradient(to bottom,rgba(216, 230, 64, 0.4) rgba(28, 206, 255, 0.4)), url(../images/aaa.png); */
+        /* background: linear-gradient(to bottom, rgba(216, 230, 64, 0.8), rgba(28, 206, 255, 0.4)), url(../images/aaa.png); */
+        background-image: url(../images/aaa.png);
+        background-size: 100% 100%;
+
+    
 }
 
 .landing-fullpage{
@@ -81,6 +94,8 @@ body{
     max-height: 100%;
     max-width:100%;
     min-height: 100vh;
+    
+
     /* background: linear-gradient(to right, rgba(99, 255, 60, 0.8), rgb(255,255,255, .3)), url(../images/debt.png); */
    
 
@@ -97,8 +112,8 @@ body{
 }
 
 .landing-fullpage img{
-    width: 90%;
-    height: 80%;
+    width: 70%;
+    height: 60%;
     margin-top: 20%;
 
 }
