@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/sidebarNavigation.css">
-  <link rel="stylesheet" href="css/debtor.css">
   <link rel="icon" type="png" href="images/coin1.png">
 
   
@@ -19,21 +18,20 @@
 </head>
 
 <body>
-     <nav class="navbar sidebarNavigation" data-sidebarClass="navbar-default" style="background: linear-gradient(to top right, rgba(95, 81, 189), rgb(187, 99, 168));">
+     <nav class="navbar navbar-inverse sidebarNavigation" data-sidebarClass="navbar-inverse" style="border-radius: 0px;">
      <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" style="padding: 5px 10px;">
               <span class="glyphicon glyphicon-menu-hamburger" style="color: white;"></span>                    
           </button>
-         <a class="navbar-brand" href="#" style="color: white;">DebtBuddy</a>
+         <a class="navbar-brand" href="#"><img src="images/db3.png" style="height: 25px;"></a>
        </div>
        <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-           <!-- <img src="images/coin1.png" style="height: 100px; width: 100px; padding-bottom: 15px; margin-left: 18%;">-->
             <li><a href="dash.html"><span class="glyphicon glyphicon-home"></span>&emsp;Home</a></li>
               </li>
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span>&emsp;Profile</a></li>
-                <li class="active"><a href="debtor.html"><span class="glyphicon glyphicon-list-alt"></span>&emsp;Debtors</a></li>
+                <li  class="active"><a href="debtor.html"><span class="glyphicon glyphicon-list-alt"></span>&emsp;Debtors</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                  <li><a href="#"><span class="glyphicon glyphicon-log-out"></span>&emsp;Logout</a></li>
@@ -110,7 +108,7 @@
 
 <h3>Debtors</h3>
 
-<p>list of Debtors here. acilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut  </p>
+<p>list of Debtors here. acilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. </p>
 
 <!-- Button trigger modal -->
 <button class="btn btn-primary btn-lg" style="border-radius: 26px" data-toggle="modal" data-target="#myModalNorm"><span class="glyphicon glyphicon-plus"></span></button>
@@ -124,7 +122,7 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    // alert("ready!");
+    alert("ready!");
     $(document).on('click', '#addDebtor', function(){
 
      var form = document.getElementById('myModalNorm');
@@ -132,7 +130,7 @@
      var last_name = document.getElementById('last_name').value;
      var contact = document.getElementById('contact').value;
      var address = document.getElementById('address').value;
-    // alert(first_name);
+    alert(first_name);
     if (first_name != "" && last_name != "" && contact != "" && address != ""){
      var adata = {
       "first_name": first_name, 
