@@ -89,7 +89,9 @@ $(document).ready(function(){
                     headers: {"Authorization": localStorage.getItem('token')},
                     success: function(result){
                         alert("signed in");
-                       localStorage.setItem('token', logindata.token);
+                       localStorage.setItem('token', result.token);
+                       localStorage.setItem('user', username);
+                  
                         document.getElementById('username').value = ''
                         document.getElementById('password').value = ''
                         location.href = "dash.html"
