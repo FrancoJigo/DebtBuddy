@@ -29,7 +29,7 @@
            
             <a href="#" class="navbar-brand" style="color:rgb(105, 118, 254); display:inline-block; width:20%;  margin:auto; "><i  class="fa fa-home"></i></a>
             <a href="#" class="navbar-brand" style="display:inline-block;  width:20%;  margin:auto; "><i  class="fa fa-user-circle"></i></a>
-            <a href="#" class="navbar-brand" style="display:inline-block; width:20%;  margin:auto; "><i  class="fa fa-plus-square"></i></a>
+            <a id="adddebtbutton" href="#" class="navbar-brand" style="display:inline-block; width:20%;  margin:auto; "><i  class="fa fa-plus-square"></i></a>
             <a href="#" class="navbar-brand" style="display:inline-block;   width:20%;  margin:auto;"><i  class="fa fa-cog"></i></a>
             <a id="logout" href="#" class="navbar-brand" style="display:inline-block;  width:20%;  margin:auto;"><i  class="fa fa-sign-out-alt"></i></a>
 
@@ -46,6 +46,28 @@
   <i class="fa fa-ellipsis-v"></i>
 </div> -->
 </header>
+
+
+<div class="adddebtmodal" id="adddebtmodal">
+    <h1 class="adddebtword">Add debtor</h1>
+    <form  id="adddebtorform" class="signup-form">
+     
+         
+         <h6><i style="margin-right: 5px" class="fa fa-user"></i>First name </h6>
+         <input id="firstname" type="text" placeholder="">
+        
+         <h6> <i style="margin-right: 5px" class="fa fa-user"></i>Last name</h6>
+         <input id="lastname" type="text" placeholder="">
+        
+         <h6> <i style="margin-right: 5px" class="fa fa-at"></i>Address</h6>
+         <input id="location" type="text" placeholder="">
+         
+         <h6><i style="margin-right: 5px" class="fa fa-key"></i>Contact number</h6>
+         <input id="contactnumber" type="text" placeholder="">
+       </form>
+       <input id="confirmadd" class="confirmadd" type="button" value="Confirm">
+       <input id="closeadd" class="closeadd" type="button" value="Close">
+</div>
 
 <div class="container">
 
@@ -99,12 +121,23 @@
     <h6 class="imagecontact"><i style="margin-right:5px" class="fa fa-address-book"></i>09756102690</h6>
   </div>
   </div>
-  
+  <div class="cardss">
+    <div class="imagediv">      
+      <img class="image1" src="images/person1.jpg">
+    </div>
+    <i style="float:right; margin-top: 10px;" class="fa fa-ellipsis-h"></i>
+    <div class="infodiv">
+    <a class="imagename"> <i style="margin-right:5px" class="fa fa-user-alt"></i> Franco Jigo C. Pacaña</a>
+      <h6 class="imageaddress"><i style="margin-right:5px" class="fa fa-home"></i>Upper Ditucalan Iligan City</h6>
+      <h6 class="imagecontact"><i style="margin-right:5px" class="fa fa-address-book"></i>09756102690</h6>
+    </div>
+    </div>
 
-
+    
 
 
 </div>
+
 
 
 </div>
@@ -126,6 +159,16 @@
     $('.imagename').textfill();
     $('.imageaddress').textfill();
     $('.imagecontact').textfill();
+
+    $(document).on('click','#adddebtbutton', function(e){
+       $('#adddebtmodal').css("display", "block" , 'slow');
+    });
+
+    $(document).on('click','#closeadd', function(e){
+      $('#adddebtmodal').fadeOut('slow');
+   });
+
+   
  });
 </script>
 
