@@ -14,7 +14,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="js/sidebarNavigation.js"></script>
-  <!-- <script src="js/debtor.js"></script> -->
+  <script src="js/debtor.js"></script>
   
 </head>
 
@@ -119,63 +119,4 @@
 </div>
 
 </body>
-
-
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    // alert("ready!");
-    $(document).on('click', '#addDebtor', function(){
-
-     var form = document.getElementById('myModalNorm');
-     var first_name = document.getElementById('first_name').value;
-     var last_name = document.getElementById('last_name').value;
-     var contact = document.getElementById('contact').value;
-     var address = document.getElementById('address').value;
-    // alert(first_name);
-    if (first_name != "" && last_name != "" && contact != "" && address != ""){
-     var adata = {
-      "first_name": first_name, 
-      "last_name": last_name,
-      "contact": contact,
-      "address": address
-     }
-
-    $.ajax({
-      type: "POST",
-      url: "http://debtbuddy.herokuapp.com/addDebtor",
-      data: JSON.stringify(adata),
-      dataType: "json",
-      contentType: "application/json",
-      success: function() {
-        alert("it works! your debtor is saved. noice.");
-        // $adata.append('<li>first_name: '+ newAdata.first__name +'last_name: '+newAdata.last_name+' contact: '+newAdata.contact+'address: '+newAdata.address+'</li>');
-      },
-      error: function(result){
-       alert("error. try again!");
-      }
-    })
-  }
-else{
-  alert("fill me up!");
-
-
-
- $.ajax({
-      type: "GET",
-      url: "http://debtbuddy.herokuapp.com/getDebtor",
-      data: JSON.stringify(adata),
-      dataType: "json",
-      contentType: "application/json",
-})
-
-}
-})
-});
-
-
-
-</script>
-
-
 </html>
