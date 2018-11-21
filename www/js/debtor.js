@@ -91,7 +91,7 @@ function getDebtors(){
                 	debtor_data += '</div>';
                 	debtor_data += '<i style="float:right; margin-top: 10px;" class="fa fa-ellipsis-h"></i>';
                 	debtor_data += '<div class="infodiv">';
-                	debtor_data += '<a class="imagename"> <i style="margin-right:5px;" class="fa fa-user-alt"></i>' + data.users[i].first_name + ' ' data.users[i].last_name + '</a>';
+                	debtor_data += '<a class="imagename"> <i style="margin-right:5px;" class="fa fa-user-alt"></i>' + data.users[i].first_name + ' ' + data.users[i].last_name + '</a>';
                 	debtor_data += '<h6 class="imageaddress"> <i style="margin-right:5px;" class="fa fa-user-home"></i>' + data.users[i].address + '</h6>';
                 	debtor_data += '<h6 class="imagecontact"> <i style="margin-right:5px;" class="fa fa-user-address-book"></i>' + data.users[i].contact + '</h6>';
                 	debtor_data += '</div>';
