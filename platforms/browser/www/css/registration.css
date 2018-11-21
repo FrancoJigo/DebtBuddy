@@ -1,0 +1,78 @@
+body{
+    background: linear-gradient(to bottom, rgba(28, 206, 255, 0.3), rgba(163, 255, 71, 0.8),rgba(28, 206, 255, 0.4)), url(../images/aaa2.png);
+    background-size: 100% 100%;
+    margin: 0;
+    padding: 0;
+
+   
+}
+
+.signup-form{
+    min-width: 100%;
+    height: 50%;
+    margin-left: 0;
+    position: fixed;
+    bottom: 0;
+    /* background-color: rgb(128, 209, 7, .9) ; */
+    color: white;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    /* background: linear-gradient(to bottom, rgba(216, 230, 64, 0.8), rgba(77, 174, 8, 0.9)), url(../images/business.jpg); */
+    font-size: 20px;
+    outline: none;
+    text-decoration: none;
+    text-align: center;
+    
+}
+
+.registration-fullpage{
+    max-height: 100%;
+    max-width:100%;
+    min-height: 100vh;
+    /* background: linear-gradient(to right, rgba(99, 255, 60, 0.8), rgb(255,255,255, .3)), url(../images/debt.png); */
+   
+
+    background-repeat: no-repeat;
+    background-size: 90% 47%;
+    background-attachment: fixed;
+    background-position: center; 
+
+    overflow-y: hidden;
+    position: relative;
+    text-align: center;
+   
+}
+
+.registration-fullpage img{
+    width: 70%;
+    height: 60%;
+    margin-top: 20%;
+    
+
+}
+
+.signup-form input{
+    background-color: rgba(255, 255, 255, 0.4) ;
+    outline: 0;
+ border-width: 0 0 0 0;
+  border-color: white;
+  color: black;
+  opacity: 1;
+  padding: 12px 10px 12px 10px;
+  width: 80%;
+  margin-left: 0;
+  color: black;
+  margin-top: 3%;
+  margin-right: 10px;
+  /* box-shadow: 1px 1px 1px #aaaaaa; */
+  
+ border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  /* border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px; */
+  
+}
+
+#signup{
+    color: 
+}
