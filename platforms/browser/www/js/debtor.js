@@ -2,8 +2,8 @@
 
  $(document).ready(function() {
 	// alert("ready!");
-	var user = localStorage.getItem('user');
-	var token = localStorage.getItem('token');
+	// var user = localStorage.getItem('user');
+	// var token = localStorage.getItem('token');
 
 	// $.ajax({
 	// 	type: "GET",
@@ -11,7 +11,10 @@
 	// 	data: JSON.stringify(data),
 	// 	dataType: "json",
 	// 	contentType: "application/json, charset=utf-8",
-	// 	headers:{'x-access-token': token},
+	// 	headers:{'x-access-token': token},'       },
+	// 	success: function(result){
+		   
+	// 	},
 	// })
 
     $(document).on('click', '#addDebtor', function(){
