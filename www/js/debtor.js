@@ -1,7 +1,4 @@
-
-
  $(document).ready(function() {
-	// alert("ready!");
 	var user = localStorage.getItem('user');
 	var token = localStorage.getItem('token');
 
@@ -11,9 +8,8 @@
 	// 	data: JSON.stringify(data),
 	// 	dataType: "json",
 	// 	contentType: "application/json, charset=utf-8",
-	// 	headers:{'x-access-token': token},'       },
+	// 	headers:{'x-access-token': token},'},
 	// 	success: function(result){
-		   
 	// 	},
 	// })
 
@@ -25,9 +21,8 @@
                 var address = document.getElementById('address').value;
 				var contact = document.getElementById('contact').value;
 				  
-                alert(token);
-
 		if (first_name != "" && last_name != "" && contact != "" && address != ""){
+                     
                       var data = {
                         "first_name":first_name, 
                         "last_name":last_name, 
@@ -35,6 +30,7 @@
 						"address": address,
 						"owner":user
                         }
+
 		    $.ajax({
 		        type: "POST",
 		        url: "https://debtbuddy.herokuapp.com/addDebtor?returnformat=json",
@@ -43,8 +39,6 @@
 				contentType: "application/json, charset=utf-8",
 				headers:{'x-access-token': token},
                 success: function(result){
-			       
-
                     alert("posted!");
                     location.href = "dash.html"
                 },
@@ -56,11 +50,8 @@
 		  alert("please complete forms!");
 		}
 	}
-
-
-	)
-	});  
-
+  )
+});  
 
 
 function getDebtors(){
@@ -79,9 +70,6 @@ function getDebtors(){
               }),
             
     	    success: function(data){
-    	    	// alert("received");
-    	    	console.log("Success!");
-    	    	var debtor_data = "";
                 for (var i= 0; i < data.users.length; i++){
                 	debtor_data += '<div class="cardss">';
                 	debtor_data += '<div class="imagediv">';
@@ -104,4 +92,114 @@ function getDebtors(){
 }
 
 
+// function editDebtor(){
 
+// 	 var data = {
+//                         "first_name":first_name, 
+//                         "last_name":last_name, 
+//                         "contact":contact, 
+// 						"address": address,
+// 						"owner":user
+//                         }
+
+// 	 $.ajax({
+//     		url: 'http://debtbuddy.herokuapp.com/editDebtor?returnformat=json',
+//     		contentType: "application/json, charset=utf-8",
+//     		headers:{'x-access-token': token},
+//     		method: 'POST',
+//     		dataType: 'json',
+//     		crossDomain: true,
+//             data: JSON.stringify(data),
+//     	    success: function(result){
+//     	    	console.log("Success!");
+//                 },
+//                 error: function(result){
+//                 console.log(data);
+//                 }
+// 	});
+// }
+
+
+// function delDebtors(debtor_id){
+//  $.ajax({
+//     		url: 'http://debtbuddy.herokuapp.com/delDebtor?returnformat=json',
+//     		contentType: "application/json, charset=utf-8",
+//     		headers:{'x-access-token': token},
+//     		method: 'POST',
+//     		dataType: 'json',
+//     		crossDomain: true,
+//             data: JSON.stringify({
+// 		      'owner': user,
+// 		      'id' : debtor_id
+//             }),
+            
+//     	    success: function(data){
+//     	    	console.log("Success!");
+//                 },
+//                 error: function(data){
+//                 console.log(data);
+//                 }
+// 	});
+// }
+
+
+
+
+// $(document).ready(function() {
+// 	var user = localStorage.getItem('user');
+// 	var token = localStorage.getItem('token');
+
+//     $(document).on('click', '#addDebt', function(){
+
+//                 var form = document.getElementById('adddebtform');
+//                 var item = document.getElementById('item').value;
+//                 var quantity = document.getElementById('quantity').value;
+//                 var price = document.getElementById('price').value;
+				  
+// 		if (item != "" && quantity != "" && price != ""){
+                     
+//                       var data = {
+//                         "item":item, 
+//                         "quantity":quantity, 
+// 						"price": price,
+// 						"owner":user
+//                         }
+
+// 		    $.ajax({
+// 		        type: "POST",
+// 		        url: "https://debtbuddy.herokuapp.com/addDebt?returnformat=json",
+// 		        data: JSON.stringify(data),
+// 		        dataType: "json",
+// 				contentType: "application/json, charset=utf-8",
+// 				headers:{'x-access-token': token},
+//                 success: function(result){
+//                     alert("posted!");
+//                     location.href = "dash.html"
+//                 },
+//                 error: function(result){
+//                     alert("error Cannot Post");
+//                 }
+// 		})
+// 		} else {
+// 		  alert("please complete forms!");
+// 		}
+// 	}
+//   )
+// });  
+
+
+//  $(document).ready(function() {
+
+//     $('#search').keyup(function(){
+//         $('#result').html('');
+//         var searchField =  $('#search').val();
+// 	    var expression = new RegExp(searchField. "i");
+// 	    $.getJSON('data.json', function(data){
+// 	    	$.each(data, function(key, value){
+//                if(value.name.search(expression) != -1 || value.location.search(expression) != -1){
+//                	$.('#result').append('<li class="list-group-item"><li>');
+//                }
+// 	    	});
+// 	    })
+// });
+// });
