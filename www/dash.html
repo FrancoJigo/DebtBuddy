@@ -23,7 +23,7 @@
 
 </head>
 
-<body>
+<body onload="getDebtors();">
   <nav class="navbar navbar-default navbar-fixed-bottom" style="background-color:rgb(50, 50, 84); border:1px solid rgb(42, 43, 71); border-top-left-radius:40px;  border-top-right-radius:40px; bottom:0; padding:0; box-shadow:0px 13px 10px  rgba(49, 49, 49, 0.8); height:40px; display:block;">
     <div class="container-fluid" style=" border:1px solid rgb(42, 43, 71); border-top-left-radius:40px;  border-top-right-radius:40px; background-color:rgb(50, 50, 84); text-align:center; padding-left:0; padding-right:0; margin:0;  float:left; width: 100%;" >
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -42,11 +42,10 @@
     </div>
 </nav>
 <header class="Header">
-<!-- <h3>Dashboard</h3>
-<div>
-  <i class="fa fa-search"></i>
+<!-- <div>
+  <i class="fa wordfa-search"></i>
   <i class="fa fa-ellipsis-v"></i>
-</div> -->
+</div> --> 
 </header>
 
 
@@ -73,10 +72,13 @@
 
 <div class="container">
 
+<div id="showDebtors"></div>
 
+
+</div>
   <!-- <p> <strong>DebtBuddy</strong> is an automated debt list solution that saves the storekeepers or creditors struggle of listing it manually. Designed for use by both individuals and businesses, this system automatically analyzes and computes the total payment of the consumer's debt.</p> -->
 
-<div class="cardss">
+<!-- <div class="cardss">
   <div class="imagediv">      
     <img class="image1" src="images/person1.jpg">
   </div>
@@ -133,16 +135,9 @@
       <h6 class="imageaddress"><i style="margin-right:5px" class="fa fa-home"></i>Upper Ditucalan Iligan City</h6>
       <h6 class="imagecontact"><i style="margin-right:5px" class="fa fa-address-book"></i>09756102690</h6>
     </div>
-    </div>
-
-    
+    </div> -->
 
 
-</div>
-
-
-
-</div>
 <script>
   $(document).ready(function() {
     // show a dialog box when clicking on a link
