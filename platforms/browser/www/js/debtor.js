@@ -2,8 +2,8 @@
 
  $(document).ready(function() {
 	// alert("ready!");
-	// var user = localStorage.getItem('user');
-	// var token = localStorage.getItem('token');
+	var user = localStorage.getItem('user');
+	var token = localStorage.getItem('token');
 
 	// $.ajax({
 	// 	type: "GET",
