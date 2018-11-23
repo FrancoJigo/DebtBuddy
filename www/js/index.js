@@ -72,7 +72,7 @@ $(document).ready(function(){
             var form = document.getElementById('loginform');
             var username = document.getElementById('username1').value;
             var password = document.getElementById('password1').value;
-            alert(password);
+            // alert(password);
             $("#login",form).attr("disabled","disabled");
             if(username != "" && password != ""){
                 var logindata = {
@@ -88,7 +88,7 @@ $(document).ready(function(){
                     contentType: "application/json",
                     headers: {"Authorization": localStorage.getItem('token')},
                     success: function(result){
-                        alert("signed in");
+                        // alert("signed in");
                        localStorage.setItem('token', result.token);
                        localStorage.setItem('user', username);
                   
