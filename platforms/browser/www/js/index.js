@@ -114,7 +114,7 @@ $(document).ready(function(){
                     data: JSON.stringify(logindata),
                     dataType: "json",
                     contentType: "application/json",
-                    //headers: {"Authorization": localStorage.getItem('token')},
+                    headers: {"Authorization": localStorage.getItem('token')},
                     success: function(result){
                         //alert("signed in");
                        localStorage.setItem('token', result.token);
