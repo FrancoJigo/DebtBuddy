@@ -41,20 +41,48 @@ $(document).ready(function(){
                  "username":username, 
                  "password": password
              }
+           
              $.ajax({
                  type: "POST",
-                 url: "https://debtbuddy.herokuapp.com/createUser",
+                 url: "https://debtbuddy.herokuapp.com/createUser?returnformat=json",
                  data: JSON.stringify(regdata),
                  dataType: "json",
                  contentType: "application/json",
+                 //headers: {"Authorization": localStorage.getItem('token')},
                  success: function(result){
-                     alert("registered");
-                     localStorage.setItem('token', json.token);
-                     document.getElementById('firstname').value = ''
-                     document.getElementById('lastname').value = ''
-                     document.getElementById('username').value = ''
-                     document.getElementById('password').value = ''
-                     location.href = "dash.html"
+                    alert("registered");
+                    document.getElementById('firstname').value = '';
+                    document.getElementById('lastname').value = '';
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                    $.ajax({
+                        type: "POST",
+                        url: "http://debtbuddy.herokuapp.com/login?returnformat=json",
+                        data: JSON.stringify({
+                            "username":username,
+                            "password":password
+                        }),
+                        dataType: "json",
+                        contentType: "application/json",
+                        //headers: {"Authorization": localStorage.getItem('token')},
+                        success: function(result){
+                            // alert("signed in");
+                           localStorage.setItem('token', result.token);
+                           localStorage.setItem('user', username);
+                      
+                            document.getElementById('username').value = ''
+                            document.getElementById('password').value = ''
+                            location.href = "dash.html"
+                        },
+                        error: function(result){
+                        
+                            alert("error Cannot Login");
+                        }
+                    });
+                    //  localStorage.setItem('token', regdata.token)
+                    // localStorage.setItem('user', username);
+                    //  location.href = "dash.html"
+                    
                  },
                  error: function(result){
                      //alert("error Cannot Post");
@@ -72,8 +100,8 @@ $(document).ready(function(){
             var form = document.getElementById('loginform');
             var username = document.getElementById('username1').value;
             var password = document.getElementById('password1').value;
-            // alert(password);
-            $("#login",form).attr("disabled","disabled");
+            //alert(password);
+            // $("#login",form).attr("disabled","disabled");
             if(username != "" && password != ""){
                 var logindata = {
                     "username":username, 
@@ -86,9 +114,9 @@ $(document).ready(function(){
                     data: JSON.stringify(logindata),
                     dataType: "json",
                     contentType: "application/json",
-                    headers: {"Authorization": localStorage.getItem('token')},
+                    //headers: {"Authorization": localStorage.getItem('token')},
                     success: function(result){
-                        // alert("signed in");
+                        //alert("signed in");
                        localStorage.setItem('token', result.token);
                        localStorage.setItem('user', username);
                   
@@ -97,23 +125,10 @@ $(document).ready(function(){
                         location.href = "dash.html"
                     },
                     error: function(result){
-                    
                         alert("error Cannot Login");
                     }
                 });
-                // $.post("http://debtbuddy.herokuapp.com/login?returnformat=json", {"username":username, "password":password}, function(res) {
-                //     if(res == true) {
-                //         //store
-                //         window.localStorage["username"] = username;
-                //         window.localStorage["password"] = password;        			
-                //         alert("Success");
-                //         location.href = "dashboard.html"
-
-                //     } else {
-                //         alert("Your login failed", function() {});
-                //     }
-                //     $("#login").removeAttr("disabled");
-                // },"json");
+             
             }
             else{
                 alert("Fill up all forms");
