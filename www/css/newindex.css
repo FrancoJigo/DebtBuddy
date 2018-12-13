@@ -17,7 +17,8 @@ body{
     width: 100%;
     min-height: 100%;
     /* background: linear-gradient(to right,  rgb(36, 37, 60,0.9),rgb(121, 75, 253,0.9)), url(../images/dollar.png); */
-    background: linear-gradient(to top right, rgba(95, 81, 189), rgb(187, 99, 168));
+    /* background: linear-gradient(to top right, rgba(95, 81, 189), rgb(187, 99, 168)); */
+     background-color:rgb(64, 130, 178);
 overflow-x: hidden;
 overflow-y: hidden;
         /* background: linear-gradient(to bottom, rgba(216, 230, 64, 0.8), rgba(28, 206, 255, 0.4)), url(../images/aaa.png); */
@@ -154,7 +155,7 @@ overflow-y: hidden;
     position: relative;
     width: 100%;
     display: block;
-    background-color: rgba(241, 119, 210, 0.5);
+    background-color: rgba(64, 130, 178);
     /* height: 45%; */
     border-right: 1px solid white;
     border-top: 1px solid  white;
@@ -214,8 +215,9 @@ overflow-y: hidden;
     position: relative;
     border-radius: 40px;
     /* background: linear-gradient(to top right,rgb(68, 66, 110),rgb(36, 37, 60),rgb(36, 37, 60)); */
-    background: linear-gradient(to top right, rgba(95, 81, 189), rgb(187, 99, 168),rgb(91, 96, 187),rgb(175, 74, 165));
-
+    /* background: linear-gradient(to top right, rgba(95, 81, 189), rgb(187, 99, 168),rgb(91, 96, 187),rgb(175, 74, 165)); */
+    
+    background-color:rgb(64, 130, 178);
 
     /* background: linear-gradient(to right,  rgb(36, 37, 60,0.9),rgb(121, 75, 253,0.9)), url(../images/dollar.png); */
     /* background: linear-gradient(to top right, rgba(180, 116, 235), rgb(121, 75, 253) ,rgb(36, 37, 60)); */
@@ -241,7 +243,8 @@ overflow-y: hidden;
 
     /* background: linear-gradient(to top right, rgba(180, 116, 235), rgb(133, 163, 210) ,rgb(71, 170, 155)); */
     /* background: linear-gradient(to top right,rgb(36, 37, 60),rgb(68, 66, 110)  ,rgb(36, 37, 60)); */
-    background: linear-gradient(to top right, rgb(91, 96, 187),rgba(95, 81, 189), rgb(187, 99, 168),rgb(91, 96, 187));
+    /* background: linear-gradient(to top right, rgb(91, 96, 187),rgba(95, 81, 189), rgb(187, 99, 168),rgb(91, 96, 187)); */
+    background-color:rgb(64, 130, 178);
 
     -moz-box-shadow:     -5px 8px 10px  rgba(49, 49, 49, 0.3);
    -webkit-box-shadow:  -5px 8px 10px  rgba(50, 50, 50, 0.3);
@@ -316,7 +319,7 @@ h6{
      position: absolute; 
 left: 20%;
 bottom: -15px;
-    color: rgb(179, 134, 237);
+    color: rgb(64, 130, 178);
     background-color: rgba(255, 255, 255) ;
     outline: 0;
  border-width: 0 0 0 0;
@@ -339,7 +342,7 @@ bottom: -15px;
     position: absolute; 
     left: 20%;
     bottom: -15px;
-        color: rgb(179, 134, 237);
+    color: rgb(64, 130, 178);
         background-color: rgba(255, 255, 255) ;
         outline: 0;
      border-width: 0 0 0 0;

@@ -1,15 +1,15 @@
 $(document).ready(function(){
     // $('#signupmodal').show('slow');
-     $('#signupbutton').css("box-shadow", "0px 13px 10px  rgba(49, 49, 49, 0.3)");
-    $('#signupbutton').css("background-color", "rgba(241, 119, 210, 0.5)");
+     $('#signupbutton').css("box-shadow", "-3px 13px 10px  rgba(49, 49, 49, 0.3)");
+    $('#signupbutton').css("background-color", "rgba(64, 130, 178)");
 
      // $('#loginmodal').css("display", "none");
      $(document).on('click', '#signupbutton', function(){
-         $('#signupbutton').css("box-shadow", "0px 13px 10px  rgba(49, 49, 49, 0.3)");
-         $('#signupbutton').css("background-color", "rgba(241, 119, 210, 0.5)");
+         $('#signupbutton').css("box-shadow", "-3px 10px 10px  rgba(49, 49, 49, 0.3)");
+        //  $('#signupbutton').css("background-color", "rgba(241, 119, 210, 0.5)");
          $('#loginbutton').css("background-color", "rgba(241, 119, 210, 0)");
          $('#loginbutton').css("box-shadow", "none")
-         $('#signupmodal').fadeIn('slow');
+         $('#signupmodal').fadeIn();
          $('#loginmodal').hide();
         // $('#signupmodal').css("display", "block");
          //$('#loginmodal').css("display", "none");
@@ -17,11 +17,11 @@ $(document).ready(function(){
      $(document).on('click','#loginbutton', function(){
         // $('#loginmodal').css("display", "block");
         // $('#signupmodal').css("display", "none");
-        $('#loginbutton').css("box-shadow", "0px 13px 10px  rgba(49, 49, 49, 0.3)");
-        $('#loginbutton').css("background-color", "rgba(241, 119, 210, 0.5)");
+        $('#loginbutton').css("box-shadow", "-3px 10px 10px  rgba(49, 49, 49, 0.3)");
+        // $('#loginbutton').css("background-color", "rgba(241, 119, 210, 0.5)");
         $('#signupbutton').css("background-color", "rgba(241, 119, 210, 0)");
         $('#signupbutton').css("box-shadow", "none");
-        $('#loginmodal').fadeIn('slow');
+        $('#loginmodal').fadeIn();
          $('#signupmodal').hide();
 
 
