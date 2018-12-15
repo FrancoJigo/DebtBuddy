@@ -1,6 +1,4 @@
- $(document).ready(function() {
-
-	
+$(document).ready(function() {
 
 	$("#searchbuttons").on('click', function () { 
 		$("#searchbars").show();
@@ -51,6 +49,59 @@
 		$("#searchbars").hide();		
 		$("#optionbuttons").show();
 	 });
+
+	 $(document).on('click','.cardss', function(){
+		 var ids = $(this).attr('id');
+		
+		var debtorname = $("#imagename"+ids).text();
+		//alert(debtorname);
+		var debtorcontact = $("#imagecontact"+ids).text();
+	//	alert(debtorcontact);
+		var debtoraddress = $("#imageaddress"+ids).text();
+		$('.container').hide();
+		 $('.debtorcontainer').css("display", "block");
+		//  $(".debtorname1 h3").html(debtorname);
+		homename.innerText = "";
+		debtorname1.innerText = debtorname;
+		debtorcontact1.innerText = debtorcontact;
+		debtoraddress1.innerText = debtoraddress;
+	 });
+	 
+	 $(document).on('click','.image1', function(){
+		// var ids = $(this).attr('id');
+		var ids = $(this).parent().parent().attr('id');
+	//	alert(ids);
+	   var debtorname = $("#imagename"+ids).text();
+	  // alert(debtorname);
+	   var debtorcontact = $("#imagecontact"+ids).text();
+	  // alert(debtorcontact);
+	  var debtoraddress = $("#imageaddress"+ids).text();
+	   $('.container').hide();
+	   $('.debtorcontainer').css("display", "block");
+	   
+		debtorname1.innerText = debtorname;
+		debtorcontact1.innerText = debtorcontact;
+		debtoraddress1.innerText = debtoraddress;
+	});
+	$(document).on('click','.imagename', function(){
+		// var ids = $(this).attr('id');
+		var ids = $(this).parent().parent().attr('id');
+		//alert(ids);
+	   var debtorname = $("#imagename"+ids).text();
+	  // alert(debtorname);
+	   var debtorcontact = $("#imagecontact"+ids).text();
+	  // alert(debtorcontact);
+	  var debtoraddress = $("#imageaddress"+ids).text();
+	   $('.container').hide();
+	   $('.debtorcontainer').css("display", "block");
+		debtorname1.innerText = debtorname;
+		debtorcontact1.innerText = debtorcontact;
+		debtoraddress1.innerText = debtoraddress;
+	});
+	 $(document).on('click', '#backbutton', function(){
+		$('.debtorcontainer').css("display", "none");
+		$('.container').show();
+	 })
   
 	 	$(document).on('click','#cancellogout', function () {
 			$('#alertdiv').css("display","none");
@@ -138,18 +189,19 @@ function getDebtors(){
     	    success: function(data){
 				var debtor_data = "";
 				var test = data.users.length;
+			
 				
 				if(test != 0 ){
 					for (var i= 0; i < data.users.length; i++){
-						debtor_data += '<div class="cardss">';
-						debtor_data += '<div class="imagediv">';
-						debtor_data += '<img class="image1" src="images/person1.jpg">';
+						debtor_data += '<div class="cardss"  id='+data.users[i].id+'>';
+						debtor_data += '<div class="imagediv" id="imagediv'+data.users[i].id+'">';
+						debtor_data += '<img class="image1" src="images/person1.jpg"  id="image1'+data.users[i].id+'">';
 						debtor_data += '</div>';
-						debtor_data += '<i style="float:right; margin-top: 10px;" class="fa fa-ellipsis-h"></i>';
-						debtor_data += '<div class="infodiv">';
-						debtor_data += '<a class="imagename" style:" text-decoration:none;"> <i style="margin-right:5px; " class="fa fa-user-alt"></i>' + data.users[i].first_name + ' ' + data.users[i].last_name + '</a>';
-						//debtor_data += '<h6 class="imageaddress"> <i style="margin-right:5px;" class="fa fa-user-home"></i>' + data.users[i].address + '</h6>';
-						debtor_data += '<h6 class="imagecontact"> <i style="margin-right:5px;" class="fa fa-user-address-book"></i>' + data.users[i].contact + '</h6>';
+						debtor_data += '<i style="float:right; margin-top: 10px;" class="fa fa-ellipsis-h"  id="option'+data.users[i].id+'"></i>';
+						debtor_data += '<div class="infodiv"  id="infodiv'+data.users[i].id+'">';
+						debtor_data += '<a class="imagename" style:" text-decoration:none;" id="imagename'+data.users[i].id+'"> <i id='+data.users[i].id+' style="margin-right:5px; " class="fa fa-user-alt"></i>' + data.users[i].first_name + ' ' + data.users[i].last_name + '</a>';
+						debtor_data += '<h6  id="imageaddress'+data.users[i].id+'" style="display:none;"> <i style="display:none;" class="fa fa-user-home"></i>' + data.users[i].address + '</h6>';
+						debtor_data += '<h6  id="imagecontact'+data.users[i].id+'" class="imagecontact"> <i style="margin-right:5px;" class="fa fa-user-address-book"></i>' + data.users[i].contact + '</h6>';
 						debtor_data += '</div>';
 						debtor_data += '</div>';
 					}
