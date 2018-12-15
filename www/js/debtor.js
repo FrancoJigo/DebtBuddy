@@ -38,6 +38,8 @@ $(document).ready(function() {
 		// $('#adddebtmodal').css("display", "block");
 		$('#optionmodal').css('display','block');
 		 $('#hider').css("display", "block");
+		 $('#addItem').show();
+		 $('#addDebtoroption').show();
 		
 	  });
 	  $(document).on('click','#addDebtoroption', function(){
@@ -58,6 +60,8 @@ $(document).ready(function() {
 		$('#adddebtmodal').hide();
 		$('#alertdiv').css("display","none");
 		$('#hider').hide();
+		$('#addItem').hide();
+		$('#addDebtoroption').hide();
 
 		//For searchbutton
 		$("#searchbars").hide();		
