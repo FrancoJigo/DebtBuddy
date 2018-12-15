@@ -259,9 +259,9 @@ function getUser(){
             
     	    success: function(data){
 				var user_data = "";
-						user_data += '<div class="container">';
+					user_data += '<div class="container">';
+						user_data += '<h3>' + users.username + '</h3>';
 						user_data += '</div>';
-				
 						
 				$('#showUser').append(user_data);
 				// $("#loaderdiv").fadeOut('fast');
@@ -274,7 +274,6 @@ function getUser(){
 	});
 	
 }
-
 
 // function editDebtor(){
 
