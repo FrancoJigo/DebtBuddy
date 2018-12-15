@@ -36,7 +36,7 @@
         <div class="navbar-header" style="border:1px solid rgb(64, 130, 178); border-top-left-radius:40px;  border-top-right-radius:40px; background-color:rgb(64, 130, 178); text-align:center; padding-left:0; padding:right;  min-width: 100%;" >
            
             <a href="#" class="navbar-brand" style="color:white; display:inline-block; width:20%;  margin:auto; "><i  class="fa fa-home"></i></a>
-            <a href="#" class="navbar-brand" style=" color:white; display:inline-block;  width:20%;  margin:auto; "><i  class="fa fa-user-circle"></i></a>
+            <a id="profilebutton" onclick="getUser();" class="navbar-brand" style=" color:white; display:inline-block;  width:20%;  margin:auto; "><i  class="fa fa-user-circle"></i></a>
             <a id="adddebtbutton" href="#" class="navbar-brand" style="color:white; display:inline-block; width:20%;  margin:auto; "><i  class="fa fa-plus-square"></i></a>
             <a  id="searchbuttons" href="#" class="navbar-brand" style="color:white; display:inline-block;   width:20%;  margin:auto;"><i  class="fa fa-search"></i></a>
             <a id="logout" href="#" class="navbar-brand" style="color:white; display:inline-block;  width:20%;  margin:auto;"><i  class="fa fa-sign-out-alt"></i></a>
@@ -94,7 +94,7 @@ padding-left: 0;" class="container">
 
 
 
-
+<div id="showUser"></div>
 <div id="showDebtors"></div>
 <div id="intromessage" class="intromessage">
   <h3>Hi! <br> Please click the plus button to add a new debtor</h3>

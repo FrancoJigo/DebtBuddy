@@ -223,6 +223,40 @@ function getDebtors(){
 	
 }
 
+function getUser(){
+	var user = localStorage.getItem('user');
+	var token = localStorage.getItem('token');
+
+    $.ajax({
+    	    async: true,
+    		url: 'http://debtbuddy.herokuapp.com/user/info/'+username+'?returnformat=json',
+    		contentType: "application/json, charset=utf-8",
+    		headers:{'x-access-token': token},
+    		method: 'POST',
+    		dataType: 'json',
+    		crossDomain: true,
+            data: JSON.stringify({
+		      'owner': user,
+              }),
+            
+    	    success: function(data){
+				var user_data = "";
+						user_data += '<div class="container">';
+						user_data += '</div>';
+				
+						
+				$('#showUser').append(user_data);
+				// $("#loaderdiv").fadeOut('fast');
+			
+				},
+				
+                error: function(data){
+                console.log(data);
+                }
+	});
+	
+}
+
 
 // function editDebtor(){
 
