@@ -35,10 +35,24 @@ $(document).ready(function() {
   
 	  $(document).on('click','#adddebtbutton', function(e){
 	   // $("#addDebtor").attr("disabled",true);
-		 $('#adddebtmodal').css("display", "block");
+		// $('#adddebtmodal').css("display", "block");
+		$('#optionmodal').css('display','block');
 		 $('#hider').css("display", "block");
-  
+		
 	  });
+	  $(document).on('click','#addDebtoroption', function(){
+		$('#adddebtmodal').css("display", "block");
+		$('#optionmodal').css('display','none');
+		
+	  });
+	  $(document).on('click','#addItem', function(){
+		$('#Itemlist').css("display", "block");
+		$('.container').css('display','none');
+		$('#optionmodal').css('display','none');
+		$('#hider').css("display", "none");
+		
+	  })
+	  
   
 	  $(document).on('click','#hider', function(e){
 		$('#adddebtmodal').hide();
