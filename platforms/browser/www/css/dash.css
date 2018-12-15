@@ -560,3 +560,11 @@ color:rgb(117, 147, 180);
 .inventory{
     border: 1px solid black;
 }
+.productname{
+    float: left;
+    width: 50%;
+}
+.productprice{
+    float: right;
+    width: 50%;
+}
