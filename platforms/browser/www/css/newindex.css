@@ -218,7 +218,7 @@ overflow-y: hidden;
     /* background: linear-gradient(to top right,rgb(68, 66, 110),rgb(36, 37, 60),rgb(36, 37, 60)); */
     /* background: linear-gradient(to top right, rgba(95, 81, 189), rgb(187, 99, 168),rgb(91, 96, 187),rgb(175, 74, 165)); */
     
-    background: linear-gradient(to top, rgba(64, 130, 178), rgba(29, 161, 242));
+    background-color: rgba(64, 130, 178);
 
     /* background: linear-gradient(to right,  rgb(36, 37, 60,0.9),rgb(121, 75, 253,0.9)), url(../images/dollar.png); */
     /* background: linear-gradient(to top right, rgba(180, 116, 235), rgb(121, 75, 253) ,rgb(36, 37, 60)); */
@@ -245,7 +245,7 @@ overflow-y: hidden;
     /* background: linear-gradient(to top right, rgba(180, 116, 235), rgb(133, 163, 210) ,rgb(71, 170, 155)); */
     /* background: linear-gradient(to top right,rgb(36, 37, 60),rgb(68, 66, 110)  ,rgb(36, 37, 60)); */
     /* background: linear-gradient(to top right, rgb(91, 96, 187),rgba(95, 81, 189), rgb(187, 99, 168),rgb(91, 96, 187)); */
-    background: linear-gradient(to top, rgba(64, 130, 178), rgba(29, 161, 242));
+    background-color: rgba(64, 130, 178);
 
     -moz-box-shadow:     -5px 8px 10px  rgba(49, 49, 49, 0.3);
    -webkit-box-shadow:  -5px 8px 10px  rgba(50, 50, 50, 0.3);

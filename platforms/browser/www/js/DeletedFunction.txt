@@ -1,0 +1,104 @@
+var input1 = document.getElementById("chatinput1");
+         input1.addEventListener("keyup", function () {
+          doSomething();
+                });
+        input.addEventListener("keyup", function () {
+        doSomethingElse();
+         });
+
+
+
+
+   var inputBox = document.getElementById('chatinput');
+
+        inputBox.onkeyup = function(){
+        document.getElementById('printsummarybox').innerHTML = inputBox.value;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        $('.erasebutton2').click(function(){
+            
+          
+            $('#pizzaordered2'+count1).remove();
+            $('#prevsize2'+count1).remove();
+            $('#prevquant2'+count1).remove();
+               
+                count1 -= 1
+               alert(count1)    
+            })
+
+
+
+
+        $('.gobutton2').click(function(){
+            $('#chatinput1').val('Quantity:');
+            
+            
+            var pizzaordered = $('.pizzaname').text();
+          //  alert(pizzaordered);
+            $("<h3/>", {
+                href: '#',
+                 name: pizzaordered,
+                 id: 'pizzaordered2'+count1,
+                 html: count1+ ".) " + pizzaordered,
+               click: function(){
+                  
+               }
+             }).appendTo("#orderlist1").show('normal');
+
+
+           var prevsize =  $('#sizechosen1').text();
+           $('#sizechosen1').text('');
+
+           $("<h3/>", {
+            href: '#',
+             name: prevsize,
+             id: 'prevsize2'+count1,
+             html:  prevsize,
+           click: function(){
+              
+           }
+         }).appendTo("#summarybox, #orderlist1").show('normal');
+         
+            
+            var prevquantity = $('#printsummarybox2').text();
+            $('#printsummarybox2').text('');
+            $("<h3/>", {
+                href: '#',
+                 name: prevquantity,
+                 id: 'prevquant2' +count1,
+                 html:  prevquantity,
+               click: function(){
+                
+               }
+             }).appendTo("#summarybox,#orderlist1");
+
+             count1 += 1;   
+        })
+
+
+          var pizzaordered = $('.pizzaname2').text();
+              //  alert(pizzaordered);
+                $("<h3/>", {
+                    href: '#',
+                     name: pizzaordered,
+                     id: 'pizzaordered'+count,
+                     html: count+ ".) " + pizzaordered,
+                   click: function(){
+                     // alert('test');
+                   }
+                 }).appendTo("#orderlist").show('normal');
+    
