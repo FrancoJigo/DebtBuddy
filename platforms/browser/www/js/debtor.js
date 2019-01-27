@@ -348,28 +348,27 @@ function getUser(){
 	var token = localStorage.getItem('token');
 
     $.ajax({
-		async: true,
-		url: 'http://debtbuddy.herokuapp.com/user/info/'+user+'?returnformat=json',
-		contentType: "application/json, charset=utf-8",
-		headers:{'x-access-token': token},
-		method: 'GET',
-		dataType: 'json',
-		crossDomain: true,
-    	  success: function(data){
-			var user_data = "";
-			user_data += '<div class="container">';
-			user_data += '<i style="float:right; margin-top: 10px;" class="fa fa-ellipsis-h"></i>';
-			user_data += '<img style="height: 120px;" src="images/store.jpg">';
-			user_data += '<h3>' + data.user.first_name + ' Store' + ' </h3>';
-			user_data += '<hr>';
-			user_data += '<h3> Name: ' + data.user.first_name + ' ' + data.user.last_name + '</h3>';
-			user_data += '<h3> Username: @' + user + '</h3>';
-			user_data += '</div>';
-			$('#showUser').append(user_data);
-			$('.cardss').css('display', 'none');
-			// $("#loaderdiv").fadeOut('fast');	
-			},
-
+    	    async: true,
+    		url: 'http://debtbuddy.herokuapp.com/user/info/'+username+'?returnformat=json',
+    		contentType: "application/json, charset=utf-8",
+    		headers:{'x-access-token': token},
+    		method: 'POST',
+    		dataType: 'json',
+    		crossDomain: true,
+            data: JSON.stringify({
+		      'owner': user,
+              }),
+            
+    	    success: function(data){
+				var user_data = "";
+					user_data += '<div class="container">';
+						user_data += '<h3>' + users.username + '</h3>';
+						user_data += '</div>';
+						
+				$('#showUser').append(user_data);
+				// $("#loaderdiv").fadeOut('fast');
+			
+				},
 				
                 error: function(data){
                 console.log(data);
@@ -377,7 +376,6 @@ function getUser(){
 	});
 	
 }
-
 
 // function editDebtor(){
 
