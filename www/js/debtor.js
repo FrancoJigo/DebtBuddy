@@ -141,9 +141,8 @@ $(document).on('click','#profileeditbutton', function(){
 		$('.deletebuttondiv').show();
 		$('#hider').show();
 		e.stopPropagation();
-		
-		
 	})
+	
 	  $(document).on('click','#hider', function(e){
 		$('#adddebtmodal').hide();
 		$('#alertdiv').css("display","none");
@@ -158,7 +157,7 @@ $(document).on('click','#profileeditbutton', function(){
 	 });
 
 	 $(document).on('click','.cardss', function(){
-		 var ids = $(this).attr('id');
+		var ids = $(this).attr('id');
 		
 		var debtorname = $("#imagename"+ids).text();
 		//alert(debtorname);
@@ -243,44 +242,6 @@ $(document).on('click','#profileeditbutton', function(){
 				//  $('#hider').css("background-color", "rgb(255,255,255, 0.7)");  
 				// $('#loaderimage').show('slow');
                 // alert(token);
-
-		if (first_name != "" && last_name != "" && contact != "" && address != ""){
-			
-			// $("#addDebtor").removeAttr("disabled");
-                      var data = {
-                        "first_name":first_name, 
-                        "last_name":last_name, 
-                        "contact":contact, 
-						"address": address,
-						"owner":user
-                        }
-
-		    $.ajax({
-		        type: "POST",
-		        url: "https://debtbuddy.herokuapp.com/addDebtor?returnformat=json",
-		        data: JSON.stringify(data),
-		        dataType: "json",
-				contentType: "application/json, charset=utf-8",
-				headers:{'x-access-token': token},
-                success: function(result){
-			       
-
-					// alert("posted!");
-					
-					 location.href = "dash.html"
-					//  $('#hider').fadeOut();  
-					// $('#loaderimage').fadeOut();
-					//$("#container").load(location.href + " #container");
-                },
-                error: function(result){
-                    alert("error Cannot Post");
-                }
-		})
-		} else {
-		  alert("please complete forms!");
-		}
-
-		// $('#container').load(document.URL +  ' #container');
 
 	}
   )
