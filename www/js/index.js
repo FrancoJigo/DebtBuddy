@@ -19,9 +19,14 @@ function onDeviceReady() {
     },
     function() {
         console.log("Database User is ready");
-        var user = localStorage.getItem('username');
-        // getProfileData(user);
+
+        // for(var i = 7; i < 9; i++){
+        //     deleteInTable(i);
+        // }
+        // deleteList(14);
     });
+
+
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS Debtors(debtor_id INTEGER PRIMARY KEY, first_name VARCHAR(40), last_name VARCHAR(40), contact VARCHAR(15), address VARCHAR(100), indebted_to varchar(80), FOREIGN KEY(indebted_to) REFERENCES User(username))',
             [],
@@ -36,10 +41,9 @@ function onDeviceReady() {
     },
     function() {
         console.log("Database Debtor is ready");
-        var user = localStorage.getItem('username');
-        // getDebtorsData(user);
-        // getListData(user);
     });
+
+
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS List(_id INTEGER PRIMARY KEY AUTOINCREMENT, item_name VARCHAR(100), item_price INTEGER, item_owner VARCHAR(100))',
             [],
@@ -55,6 +59,8 @@ function onDeviceReady() {
     function() {
         console.log("Database List is ready");
     });
+
+
     db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS Debtlist(_id INTEGER PRIMARY KEY AUTOINCREMENT, debtor_id INTEGER, item_name VARCHAR(100), item_price INTEGER, item_quantity INTEGER, date REAL, indebt_to VARCHAR(80), FOREIGN KEY(indebt_to) REFERENCES User(username))',
             [],
@@ -71,11 +77,27 @@ function onDeviceReady() {
         console.log("Database Debt List is ready");
     });
 
+
+    db.transaction(function(tx) {
+        tx.executeSql('CREATE TABLE IF NOT EXISTS Debtbalance(_id INTEGER PRIMARY KEY AUTOINCREMENT, debtor_id INTEGER, total_balance INTEGER, indebt_to VARCHAR(80), FOREIGN KEY(indebt_to) REFERENCES User(username))',
+            [],
+            function(tx, results){},
+            function(tx, error){
+                console.log("Error Creating List Table: " + error)
+            }
+            );
+    },
+    function(error) {
+        console.log("Database is not ready, error: " + error);
+    },
+    function() {
+        console.log("Database Debt Balance is ready");
+    });
+
 }
 
 //ADD USER
 function addUser(username, password, first_name, last_name){
-    console.log("ADD USER is clicked!");
     var public_id = "";
     var symbols = "abcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -93,7 +115,12 @@ function addUser(username, password, first_name, last_name){
         transaction.executeSql(executeQuery, 
             [public_id, username, password, first_name, last_name],
             function(tx, results){
-                console.log('Successful transaction!');
+                alert('Registered!');
+                document.getElementById('firstname').value = '';
+                document.getElementById('lastname').value = '';
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+                loginAfterRegister(username, password);
             },
             function(tx, error){
                 console.log("Error Creating User: " + error);
@@ -104,9 +131,7 @@ function addUser(username, password, first_name, last_name){
             console.log('Error' + error);
         },
         function() {
-            console.log('User Inserted!' );
-            alert("Registered!");
-            location.href = "dash.html";
+            console.log('Register Successful!');
         });
 }
 
@@ -118,7 +143,6 @@ function checkUsername() {
     var first_name = document.getElementById('firstname').value;
     var last_name = document.getElementById('lastname').value;
     db.transaction(function(transaction) {
-        alert("I am clicked!!!!!");
         var executeQuery = "SELECT * FROM User";
         transaction.executeSql(executeQuery, [], function(tx, result) {
             if(result.rows.length > 0){
@@ -179,9 +203,40 @@ function login(){
     }, 
     function(){
         if(check){
-            // var user = localStorage.getItem('username');
-            // getDebtorsData(user);
-            // getProfileData(username);
+            location.href = "dash.html";
+        }
+    });
+}
+
+function loginAfterRegister(username, password){
+    var check = false;
+    db.transaction(function(transaction){
+        var executeQuery = "SELECT * FROM User";
+        transaction.executeSql(executeQuery, [], function(tx, result){
+            if(result.rows.length == 0){
+                alert("No account found!");
+            } else {
+                for(var i = 0; i < result.rows.length; i++){
+                    if(username == result.rows.item(i).username && password == result.rows.item(i).password){
+                        check = true;
+                        console.log(check);
+                        localStorage.setItem('username', username);
+                        break;
+                    } else if (i == result.rows.length-1){
+                        alert("Invalid username and password!");
+                    }
+                }
+            }
+        },
+        function(error){
+            console.log('Error Querying For Login' + error);
+        });
+    },
+    function(error){
+        console.log("Error: Login:" + error)
+    }, 
+    function(){
+        if(check){
             location.href = "dash.html";
         }
     });
@@ -194,9 +249,9 @@ function logout(){
 }
 
 //DELETE ONE USER
-function deleteUser(i){
+function deleteInTable(i){
     db.transaction(function(transaction) {
-        var executeQuery = "DELETE FROM User WHERE id=?";
+        var executeQuery = "DELETE FROM Debtbalance WHERE _id=?";
         transaction.executeSql(executeQuery, 
             [i],
             function(tx, results){
@@ -211,7 +266,7 @@ function deleteUser(i){
             console.log('Error: Delete' + error);
         },
         function() {
-            console.log('User DELETED!');
+            console.log('DELETED!');
         });
 }
 
@@ -229,7 +284,7 @@ function addDebtor(){
         transaction.executeSql(executeQuery, 
             [firstname, lastname, contact, address, indebted_to],
             function(tx, results){
-                console.log('Successful transaction!');
+                console.log('Successful adding debtor!');
             },
             function(tx, error){
                 console.log("Error Adding Debtor: " + error);
@@ -241,31 +296,73 @@ function addDebtor(){
         },
         function(){
             console.log('DEBTOR ADDED!');
-            var user = localStorage.getItem('username');
-            // getDebtorsData(user);
             location.href = "dash.html";
         });
 }
 
-//SHOW DEBTORS
-// $("#showTable").click(function(){
-//      $("#TableData").html("");
-//      db.transaction(function(transaction){
-//      transaction.executeSql('SELECT * FROM Debtors', [], function (tx, results){
-//         for (var i = 0; i < results.rows.length; i++){
-//          $("#TableData").append("<tr><td>"+results.rows.item(i).debtor_id+"</td><td>"+results.rows.item(i).first_name+"</td><td>"+results.rows.item(i).last_name+"</td><td>"+results.rows.item(i).contact+"</td><td>"+results.rows.item(i).address+"</td></tr>");
-//          }
-//      },
-//      function(tx, error){
-//          console.log("Error Getting Debtors: " + error);
-//      }
-//      );
-//      });
-// });
+function removeDebtor(){
+    var debtor_id = localStorage.getItem('currentDebtorId');
+    var indebt_to = localStorage.getItem('username');
 
-// function clickShowTable(){
-//     document.getElementById("showTable").click();
-// }
+
+    db.transaction(function(transaction){
+        var user = localStorage.getItem('username');
+        var executeQuery = "SELECT * FROM Debtbalance WHERE debtor_id=? AND indebt_to=?";
+        transaction.executeSql(executeQuery, 
+            [debtor_id, indebt_to],
+            function(tx, results){
+                if(results.rows.item(0).total_balance > 0){
+                    alert("Debtor still have some balance!");
+                } else {
+                    db.transaction(function(transaction){
+                        var executeQuery = "DELETE FROM Debtors WHERE debtor_id=? AND indebted_to=?";
+                        transaction.executeSql(executeQuery, 
+                            [debtor_id, indebt_to],
+                            function(tx, results){
+                                alert("Successful removing debtor!");
+                            },
+                            function(tx, error){
+                                console.log("Error Removing Debtor: " + error);
+                            }
+                            );
+                        },
+                        function(error){
+                               console.log('Error: Remove Debtor' + error);
+                        },
+                        function(){
+                            location.href = 'dash.html';
+                        });
+                    db.transaction(function(transaction){
+                        var executeQuery = "DELETE FROM Debtbalance WHERE debtor_id=? AND indebt_to=?";
+                        transaction.executeSql(executeQuery, 
+                            [debtor_id, indebt_to],
+                            function(tx, results){
+                                console.log("Successful removing debtor in debtbalance!");
+                            },
+                            function(tx, error){
+                                console.log("Error Removing Debtor in Debtbalance: " + error);
+                            }
+                            );
+                        },
+                        function(error){
+                               console.log('Error: Remove Debtor in Debtbalance: ' + error);
+                        },
+                        function(){
+                            location.href = 'dash.html';
+                        });
+                }
+            },
+            function(tx, error){
+                console.log("Error Getting Debtbalance for Remove: " + error);
+            }
+            );
+        },
+        function(error){
+               console.log('Error: Get Balance for Remove' + error);
+        },
+        function(){
+        });
+}
 
 function getDebtorsData(){
     var user = localStorage.getItem('username');
@@ -273,49 +370,28 @@ function getDebtorsData(){
     db.transaction(function(transaction) {
         var debtor_data = "";
         var indebted_to = user;
-        console.log(indebted_to);
         var executeQuery = "SELECT * FROM Debtors WHERE indebted_to=?";
         transaction.executeSql(executeQuery, 
             [indebted_to],
             function(tx, results){
-                for(var i = 0; i < results.rows.length; i++){
-                    debtor_data += '<div class="cardss" onclick="setCurrentDebtorId('+results.rows.item(i).debtor_id+');" id='+results.rows.item(i).debtor_id+'>';
-                    debtor_data += '<div class="imagediv" id="imagediv'+results.rows.item(i).debtor_id+'">';
-                    debtor_data += '<img class="image1" src="images/person1.jpg"  id="image1'+results.rows.item(i).debtor_id+'">';
-                    debtor_data += '</div>';
-                    debtor_data += '<a id="cardsoption"><i style="float:right; margin-top: 10px; z-index:10;" class="fa fa-angle-down"  id="option'+results.rows.item(i).debtor_id+'"></i></a>';
-                    debtor_data += '<div class="infodiv"  id="infodiv'+results.rows.item(i).debtor_id+'">';
-                    debtor_data += '<a onclick="setCurrentDebtorId('+results.rows.item(i).debtor_id+');" class="imagename" style:" text-decoration:none;" id="imagename'+results.rows.item(i).debtor_id+'"> <i id='+results.rows.item(i).debtor_id+' style="margin-right:5px; " class="fa fa-user-alt"></i>' + results.rows.item(i).first_name + ' ' + results.rows.item(i).last_name + '</a>';
-                    debtor_data += '<h6  id="imageaddress'+results.rows.item(i).debtor_id+'" style="display:none;"> <i style="display:none;" class="fa fa-user-home"></i>' + results.rows.item(i).address + '</h6>';
-                    debtor_data += '<h6  id="imagecontact'+results.rows.item(i).debtor_id+'" class="imagecontact"> <i style="margin-right:5px;" class="fa fa-user-address-book"></i>' + results.rows.item(i).contact + '</h6>';
-                    debtor_data += '</div>';
-                    debtor_data += '</div>';
-
-                    // debtor_data += '<div id="debtlist'+results.rows.item(i).debtor_id+'" style="display: none;">'
-                    // debtor_data += '<div class="debtlist">';
-                    // debtor_data += '<div class="tablewrapper">';
-                    // debtor_data += '<div class="row1">';
-                    // debtor_data += '<div class="column1">Product name</div>';
-                    // debtor_data += '<div class="column2">Price</div>';
-                    // debtor_data += '<div class="column3">Quantity</div>';
-                    // debtor_data += '</div>';
-                    // debtor_data += '<div class="row1-1">';
-                    // debtor_data += '<div class="column1-1">Argentina Corned Beef lami kaau hahahahahaahhahahahahaha</div>';
-                    // debtor_data += '<div class="column2-1">36</div>';
-                    // debtor_data += '<div class="column3-1">1</div>';
-                    // debtor_data += '</div>';
-                    // debtor_data += '<div class="row1-1">';
-                    // debtor_data += '<div class="column1-1">Holiday beefloaf</div>';
-                    // debtor_data += '<div class="column2-1">21</div>';
-                    // debtor_data += '<div class="column3-1">1</div>';
-                    // debtor_data += '</div>';
-                    // debtor_data += '</div>';
-                    // debtor_data += '</div>';
-                    // debtor_data += '</div>';
-                    
+                if(results.rows.length != 0){
+                    for(var i = 0; i < results.rows.length; i++){
+                        debtor_data += '<div class="cardss" onclick="setCurrentDebtorId('+results.rows.item(i).debtor_id+'); showDebts(); addDebtbalance();" id='+results.rows.item(i).debtor_id+'>';
+                        debtor_data += '<div class="imagediv" id="imagediv'+results.rows.item(i).debtor_id+'">';
+                        debtor_data += '<img class="image1" src="images/person1.jpg"  id="image1'+results.rows.item(i).debtor_id+'">';
+                        debtor_data += '</div>';
+                        debtor_data += '<a id="cardsoption"><i style="float:right; margin-top: 10px; z-index:10;" class="fa fa-angle-down"  id="option'+results.rows.item(i).debtor_id+'"></i></a>';
+                        debtor_data += '<div class="infodiv"  id="infodiv'+results.rows.item(i).debtor_id+'">';
+                        debtor_data += '<a onclick="setCurrentDebtorId('+results.rows.item(i).debtor_id+');" class="imagename" style:" text-decoration:none;" id="imagename'+results.rows.item(i).debtor_id+'"> <i id='+results.rows.item(i).debtor_id+' style="margin-right:5px; " class="fa fa-user-alt"></i>' + results.rows.item(i).first_name + ' ' + results.rows.item(i).last_name + '</a>';
+                        debtor_data += '<h6  id="imageaddress'+results.rows.item(i).debtor_id+'" style="display:none;"> <i style="display:none;" class="fa fa-user-home"></i>' + results.rows.item(i).address + '</h6>';
+                        debtor_data += '<h6  id="imagecontact'+results.rows.item(i).debtor_id+'" class="imagecontact"> <i style="margin-right:5px;" class="fa fa-user-address-book"></i>' + results.rows.item(i).contact + '</h6>';
+                        debtor_data += '</div>';
+                        debtor_data += '</div>';
+                    }
+                    $('#showDebtors').append(debtor_data);
+                } else {
+                    $('#intromessage').css('display', 'block');
                 }
-                // localStorage.setItem('data', debtor_data);
-                $('#showDebtors').append(debtor_data);
                 $("#loaderdiv").fadeOut('fast');
             },
             function(tx, error){
@@ -422,8 +498,8 @@ function addList(){
         function(){
             console.log('LIST ADDED!');
             // getListData(owner);
-            document.getElementById("items-debtAdd").innerHTML = "";
-            getAddDebtItems();
+            var number = localStorage.getItem('currentButtonId');
+            getAddDebtItems(number);
         });
 }
 
@@ -512,7 +588,8 @@ function appendList(){
 
 
 //ADD DEBT
-function getAddDebtItems(){
+function getAddDebtItems(i){
+    var number = parseInt(i, 10);
     var data = "";
     var user = localStorage.getItem("username");
     var executeQuery = "SELECT * FROM List WHERE item_owner=?";
@@ -520,14 +597,10 @@ function getAddDebtItems(){
         transaction.executeSql(executeQuery,
             [user],
             function(tx, results){
-                data += '<option value="selected" selected="selected">Select an item</option>';
                 for(var i = 0; i < results.rows.length; i++){
                     data += '<option value="' + results.rows.item(i).item_name + '">' + results.rows.item(i).item_name + '</option>';
                 }
-                var items_empty = document.getElementById('items-debtAdd').innerHTML;
-                if(items_empty == 0){
-                    $('#items-debtAdd').append(data);
-                }
+                    $('#items-debtAdd'+number).append(data);
             },
             function(tx, error){
                 console.log("Error Showing Items to Add Debt: " + error);
@@ -542,10 +615,10 @@ function getAddDebtItems(){
         });
 }
 
-function getAddDebtPrice(){
-
-    var item_name = document.getElementById('items-debtAdd').value;
-    if(item_name != 'selected'){
+function getAddDebtPrice(i){
+    var number = parseInt(i, 10);
+    var item_name = document.getElementById('items-debtAdd'+number).value;
+    if(item_name != ''){
         var price;
         var executeQuery = "SELECT * FROM List WHERE item_name=?";
         db.transaction(function(transaction){
@@ -553,7 +626,7 @@ function getAddDebtPrice(){
                 [item_name],
                 function(tx, results){
                     price = results.rows.item(0).item_price;
-                    document.getElementById('price-debtAdd').value = price;
+                    document.getElementById('price-debtAdd'+number).value = price+'.00';
                 },
                 function(tx, error){
                     console.log("Error Showing Price to Add Debt: " + error);
@@ -567,7 +640,7 @@ function getAddDebtPrice(){
                 console.log('Showed Price to Add Debt');
             });
     } else {
-        document.getElementById('price-debtAdd').value = "Select a Product";
+        document.getElementById('price-debtAdd'+number).value = "0.00";
     }
 }
 
@@ -580,75 +653,292 @@ function addDate(){
 
 }
 
+function addMultipleItems(i){
+    var contain = i.getAttribute('id');
+    var number = parseInt(contain.slice(6), 10);
+    var check = true;
+
+    if(number != 1){
+        let cont;
+        for(var i = 2; i <= number ;i++){
+            cont = document.getElementById('items-debtAdd'+number).value;
+          if(cont == 0){
+            check = false;
+            alert('Fill all items!');
+            break;
+          }
+        }
+    }
+
+    if(check){
+        $('#button'+number).hide();
+        number += 1;
+        localStorage.setItem('currentButtonId', number);
+        var data = '';
+        var data2 = '';
+        data += '<button style="width: 90%; margin-top: 5px" id="button'+number+'" onclick="addMultipleItems(this);"><i class="fa fa-plus"></i></button>';
+        data2 += '<select class="addDebtForm-child" onchange="getAddDebtPrice('+number+')" id="items-debtAdd'+number+'" name="items-debtAdd"><option value="" selected="selected">Select an item</option></select>';
+        data2 += '<input class="addDebtForm-child" type="text" id="price-debtAdd'+number+'" value="" readonly>';
+        data2 += '<input class="addDebtForm-child" type="number" id="quantity-debtAdd'+number+'" value="1">';
+        $('#addDebtButtons').append(data);
+        $('.addDebtForm').append(data2);
+        document.getElementById("confirmItem").disabled = false;
+        getAddDebtItems(number);
+    }
+
+}
+
 function addDebt(){
+    var number = parseInt(localStorage.getItem('currentButtonId'), 10);
     var user = localStorage.getItem('username');
     var debtor_id = localStorage.getItem('currentDebtorId');
-    var item_name = document.getElementById('items-debtAdd').value;
-    var item_price = document.getElementById('price-debtAdd').value;
-    var item_quantity = document.getElementById('quantity-debtAdd').value;
-    var debtor_id2 = parseInt(debtor_id, 10);
-    var item_price2 = parseInt(item_price, 10);
-    var item_quantity2 = parseInt(item_quantity, 10);
+    var item_name = [];
+    var item_price = [];
+    var item_quantity = [];
+    var item_price2 = [];
+    var item_quantity2 = [];
+    var total = 0;
+    var checker = true;
 
-    alert(user + (debtor_id2 + 2) + item_name + (item_price2 + 2) + (item_quantity2 + 2));
-    
+    for(var i = 2; i <= number; i++){
+        item_name[i] = document.getElementById('items-debtAdd'+i).value;
+        if(item_name[i] == 0 || item_name[i] == '' || item_name[i] == null){
+            alert('Fill all items!');
+            checker = false;
+        }
+        item_price[i] = document.getElementById('price-debtAdd'+i).value;
+        item_quantity[i] = document.getElementById('quantity-debtAdd'+i).value;
+        item_price2[i] = parseInt(item_price[i], 10);
+        item_quantity2[i] = parseInt(item_quantity[i], 10);
+        total += item_price2[i] * item_quantity2[i];
+    }
+
+    var debtor_id2 = parseInt(debtor_id, 10);
+    var finder = false;
+
+    if(checker){
+        db.transaction(function(transaction){
+            var executeQuery = "INSERT INTO Debtlist(debtor_id, item_name, item_price, item_quantity, date, indebt_to) VALUES (?,?,?,?,julianday('now','localtime'),?)";
+            for(var j = 2; j <= number; j++){
+                transaction.executeSql(executeQuery, 
+                    [debtor_id2, item_name[j], item_price2[j], item_quantity2[j], user],
+                    function(tx, results){
+                    },
+                    function(tx, error){
+                        console.log("Error Adding Debt: " + error + j);
+                    }
+                    );
+                }
+            },
+            function(error){
+                   console.log('Error: Add Debt' + error);
+            },
+            function(){
+                console.log('DEBT ADDED!');
+            });
+
+        db.transaction(function(transaction){
+            var executeQuery = "SELECT * FROM Debtbalance WHERE debtor_id=?";
+            transaction.executeSql(executeQuery, 
+                [debtor_id2],
+                function(tx, result){
+                    if(result.rows.length > 0){
+                        finder = true;
+
+                        var new_total = result.rows.item(0).total_balance + total;
+
+                        db.transaction(function(transaction){
+                            var executeQuery = "UPDATE Debtbalance SET total_balance=? WHERE debtor_id=? AND indebt_to=?";
+                            transaction.executeSql(executeQuery, 
+                                [new_total, debtor_id2, user],
+                                function(tx, results){
+                                    // console.log('Successful updating debtbalance!');
+                                    showDebts();
+                                },
+                                function(tx, error){
+                                    // console.log("Error Updating Debtbalance: " + error);
+                                }
+                                );
+                            },
+                            function(error){
+                                   // console.log('Error: Update Debtbalance' + error);
+                            },
+                            function(){
+                                // console.log('UPDATED TOTAL BALANCE ADDED!');
+                            });
+                    }
+
+                    if(finder == false){
+                        db.transaction(function(transaction){
+                            var executeQuery = "INSERT INTO Debtbalance(debtor_id, total_balance, indebt_to) VALUES (?,?,?)";
+                            transaction.executeSql(executeQuery, 
+                                [debtor_id2, total, user],
+                                function(tx, results){
+                                    console.log('Successful adding debtbalance!');
+                                    showDebts();
+                                },
+                                function(tx, error){
+                                    console.log("Error Adding Debtbalance: " + error);
+                                }
+                                );
+                            },
+                            function(error){
+                                   console.log('Error: Add Debtbalance' + error);
+                            },
+                            function(){
+                                console.log('DEBTBALANCE ADDED!');
+                            });
+                    } else {
+
+                    }
+
+                },
+                function(tx, error){
+                    console.log("Error Total Balance Show: " + error);
+                }
+                );
+            },
+            function(error){
+                   console.log('Error: Showing Total Balance: ' + error);
+            },
+            function(){
+                console.log('Total Balance Showed!');
+            });
+        
+        $('#addDebtButtons').empty();
+        $('.addDebtForm').fadeOut(500, function() {
+            $(this).empty();
+            $(this).css('display', 'block');
+        });
+        $('#button1').show();
+        document.getElementById("confirmItem").disabled = true;
+        localStorage.removeItem('currentButtonId');
+
+    }
+}
+
+function addDebtbalance(){
+    var user = localStorage.getItem('username');
+    var debtor_id = localStorage.getItem('currentDebtorId');
+    var total = 0;
 
     db.transaction(function(transaction){
-        var executeQuery = "INSERT INTO DebtList(debtor_id, item_name, item_price, item_quantity, date, indebt_to) VALUES (?,?,?,?,julianday('now'),?)";
+        var executeQuery = "SELECT * FROM Debtbalance WHERE debtor_id=? AND indebt_to=?";
         transaction.executeSql(executeQuery, 
-            [debtor_id2, item_name, item_price2, item_quantity2, user],
+            [debtor_id, user],
             function(tx, results){
-                console.log('Successful adding debt!');
-                showManually();
-
+                if(results.rows.length == 0){
+                    db.transaction(function(transaction){
+                        var executeQuery = "INSERT INTO Debtbalance(debtor_id, total_balance, indebt_to) VALUES (?,?,?)";
+                        transaction.executeSql(executeQuery, 
+                            [debtor_id, total, user],
+                            function(tx, results){
+                                console.log('Successful adding debtbalance!');
+                            },
+                            function(tx, error){
+                                console.log("Error Adding Debtbalance: " + error);
+                            }
+                            );
+                        },
+                        function(error){
+                               console.log('Error: Add Debtbalance' + error);
+                        },
+                        function(){
+                            console.log('DEBTBALANCE ADDED!');
+                        });
+                }
             },
             function(tx, error){
-                console.log("Error Adding Debt: " + error);
+                console.log("Error Searching Debtbalance: " + error);
             }
             );
         },
         function(error){
-               console.log('Error: Add Debt' + error);
+               console.log('Error: Search Debtbalance' + error);
         },
         function(){
-            console.log('DEBT ADDED!');
         });
 }
 
-function addManualDebt(){
-
-    var user = 'brixare';
-    var debtor_id = 2;
-    var item_name = 'Lays Classic';
-    var item_price = 161;
-    var item_quantity = 1;
-    var mainDATE = new Date();
-    var y = mainDATE.getFullYear();
-    var m = mainDATE.getMonth() + 1;
-    var d = mainDATE.getDate();
-    // var dateNow = y + ':' + '0' + m + ':0' + d + ' ' + '21:01:10';
-
+function showDebts(){
+    var i = localStorage.getItem('currentDebtorId');
+    var user = localStorage.getItem('username');
+    var data = '';
+    var total = 0;
+    document.getElementById('showDebts').innerHTML = "";
+    db = window.openDatabase("db6.db","1.0","DebtBuddy Database",1000000);
+    var checker = true;
 
     db.transaction(function(transaction){
-        var executeQuery = "INSERT INTO Debtlist(debtor_id, item_name, item_price, item_quantity, date, indebt_to) VALUES (?,?,?,?,julianday('now'),?)";
+        var executeQuery = "SELECT * FROM Debtbalance WHERE debtor_id=?";
         transaction.executeSql(executeQuery, 
-            [debtor_id, item_name, item_price, item_quantity, user],
-            function(tx, results){
-                console.log('Successful adding debt!');
-                
+            [i],
+            function(tx, result){
+                if(result.rows.length == 0){
+                    checker = false;
+
+                } else {
+                    db.transaction(function(transaction){
+                        var executeQuery = "SELECT * FROM Debtlist WHERE debtor_id=? AND indebt_to=?";
+                        transaction.executeSql(executeQuery, 
+                            [i, user],
+                            function(tx, results){
+                                for(var j = 0; j < results.rows.length; j++){
+                                    data += '<div class="row1-1">';
+                                    data += '<div class="column1-1">' + results.rows.item(j).item_name + '</div>';
+                                    data += '<div class="column2-1">' + results.rows.item(j).item_price + '</div>';
+                                    data += '<div class="column3-1">' + results.rows.item(j).item_quantity + '</div>';
+                                    data += '</div>';
+                                }          
+                            },
+                            function(tx, error){
+                                console.log("Error Showing Debt: " + error);
+                            }
+                            );
+                        var executeQuery2 = "SELECT * FROM Debtbalance WHERE debtor_id=?";
+                        transaction.executeSql(executeQuery2, 
+                            [i],
+                            function(tx, result){
+                                var total = result.rows.item(0).total_balance;
+
+                                $('#totalDebt').html('Total: <b>'+total+'</b>');
+                                // data += '<footer align="right" style="padding-right: 10%">Total: ' + total + '</footer>';
+                                $('#paymentAmount').val(total);
+                                $('#showDebts').append(data);
+                            },
+                            function(tx, error){
+                                console.log("Error Total Balance Show: " + error);
+                            }
+                            );
+                        },
+                        function(error){
+                               console.log('Error: Show Debt' + error);
+                        },
+                        function(){
+                            console.log('Debts Showed!');
+                        });
+                }
 
             },
             function(tx, error){
-                console.log("Error Adding Debt: " + error);
+                console.log("Error Total Balance Show: " + error);
             }
             );
         },
         function(error){
-               console.log('Error: Add Debt' + error);
+               console.log('Error: Showing Total Balance: ' + error);
         },
         function(){
-            console.log('DEBT ADDED!');
+            console.log('Total Balance Showed!');
         });
+    if(checker){
+                    
+    }
+
+}
+
+function clearShowDebts(){
+    document.getElementById('showDebts').innerHTML = '';
 }
 
 function showManually(){
@@ -671,6 +961,124 @@ function showManually(){
         },
         function(){
             console.log('TEST Showed!');
+        });
+}
+
+function toggleDebtList(){
+    $("#showDebts").fadeToggle();
+}
+
+function togglePayButton(){
+    var debtor_id = localStorage.getItem('currentDebtorId');
+    var user = localStorage.getItem('username');
+
+    db.transaction(function(transaction){
+        var executeQuery = "SELECT * FROM Debtbalance WHERE debtor_id=? AND indebt_to=?";
+        transaction.executeSql(executeQuery, 
+            [debtor_id, user],
+            function(tx, results){
+                if(results.rows.item(0).total_balance > 0){
+                    $("#payInput").fadeToggle();
+                    $("#payButton").fadeToggle();
+                } else {
+                    alert('Debtor has no balance!');
+                }
+            },
+            function(tx, error){
+                console.log("Error Searching Debtbalance: " + error);
+            }
+            );
+        },
+        function(error){
+               console.log('Error: Search Debtbalance' + error);
+        },
+        function(){
+        });
+}
+
+function payTextToggle(){
+    var cont = $('#paymentAmount').val();
+    var data = ''
+    if(cont == 0){
+        alert('Please enter amount above 0!');
+    } else if(cont == ''){
+        alert('Please enter an amount to be paid!');
+    } else {
+        data += 'Amount entered is ' + cont;
+        data += '<button onclick="payDebt();">Confirm</button>'
+        data += '<button onclick="payTextToggle();">Cancel</button>';
+        $('#payText').html(data);
+        $('#payText').fadeToggle();
+    }
+}
+
+function payDebt(){
+    togglePayButton();
+    payTextToggle();
+    var debtor_id = localStorage.getItem('currentDebtorId');
+    var user = localStorage.getItem('username');
+    var amount = $('#paymentAmount').val();
+    var new_total = 0;
+
+    db.transaction(function(transaction){
+        var executeQuery = "SELECT * FROM Debtbalance WHERE debtor_id=? AND indebt_to=?";
+        transaction.executeSql(executeQuery, 
+            [debtor_id, user],
+            function(tx, results){
+                if(results.rows.item(0).total_balance == amount || results.rows.item(0).total_balance < amount){
+                    db.transaction(function(transaction){
+                        var executeQuery = "UPDATE Debtbalance SET total_balance=? WHERE debtor_id=? AND indebt_to=?";
+                        transaction.executeSql(executeQuery, 
+                            [new_total, debtor_id, user],
+                            function(tx, results){
+                                // console.log('Successful updating debtbalance!');
+                            },
+                            function(tx, error){
+                                console.log("Error Paying Debtbalance Full: " + error);
+                            }
+                            );
+                        },
+                        function(error){
+                               console.log('Error: Pay Debtbalance Full' + error);
+                        },
+                        function(){
+                            console.log('UPDATED TOTAL BALANCE(Pay in Full)!');
+                            location.href = 'dash.html';
+                        });
+                } else {
+                    if(results.rows.item(0).total_balance > amount){
+                        new_total = results.rows.item(0).total_balance - amount;
+                        db.transaction(function(transaction){
+                            var executeQuery = "UPDATE Debtbalance SET total_balance=? WHERE debtor_id=? AND indebt_to=?";
+                            transaction.executeSql(executeQuery, 
+                                [new_total, debtor_id, user],
+                                function(tx, results){
+                                    // console.log('Successful updating debtbalance!');
+                                },
+                                function(tx, error){
+                                    console.log("Error Paying Debtbalance: " + error);
+                                }
+                                );
+                            },
+                            function(error){
+                                   console.log('Error: Pay Debtbalance' + error);
+                            },
+                            function(){
+                                console.log('UPDATED TOTAL BALANCE(Pay)!');
+                                showDebts();
+                            });
+                    }
+                }
+            },
+            function(tx, error){
+                console.log("Error Searching Debtbalance: " + error);
+            }
+            );
+        },
+        function(error){
+               console.log('Error: Search Debtbalance' + error);
+        },
+        function(){
         });
 }
 
