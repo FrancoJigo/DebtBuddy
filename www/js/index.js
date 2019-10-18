@@ -316,7 +316,7 @@ function removeDebtor(){
                 } else {
                     db.transaction(function(transaction){
                         var executeQuery = "DELETE FROM Debtors WHERE debtor_id=? AND indebted_to=?";
-                        transaction.executeSql(executeQuery, 
+                        transaction.executeSql(executeQuery,
                             [debtor_id, indebt_to],
                             function(tx, results){
                                 alert("Successful removing debtor!");
@@ -330,7 +330,7 @@ function removeDebtor(){
                                console.log('Error: Remove Debtor' + error);
                         },
                         function(){
-                            location.href = 'dash.html';
+                            
                         });
                     db.transaction(function(transaction){
                         var executeQuery = "DELETE FROM Debtbalance WHERE debtor_id=? AND indebt_to=?";
@@ -348,6 +348,26 @@ function removeDebtor(){
                                console.log('Error: Remove Debtor in Debtbalance: ' + error);
                         },
                         function(){
+                            
+                        });
+                    db.transaction(function(transaction){
+                        var executeQuery = "DELETE FROM Debtlist WHERE debtor_id=? AND indebt_to=?";
+                        transaction.executeSql(executeQuery,
+                            [debtor_id, indebt_to],
+                            function(tx, results){
+                                alert("DONE!");
+                                console.log('Successfully deleted deleted-debtor`s debtlist!');
+                            },
+                            function(tx, error){
+                                console.log("Error Removing Debtor Debtlist: " + error);
+                            }
+                            );
+                        },
+                        function(error){
+                               console.log('Error: Remove Debtor Debtlist' + error);
+                        },
+                        function(){
+                            console.log('Deleted deleted debtors debtlist!');
                             location.href = 'dash.html';
                         });
                 }
@@ -361,6 +381,7 @@ function removeDebtor(){
                console.log('Error: Get Balance for Remove' + error);
         },
         function(){
+
         });
 }
 
