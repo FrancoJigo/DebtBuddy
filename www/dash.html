@@ -186,31 +186,39 @@ padding-left: 0;" class="container">
 <div class="debtorimage">
     <img class="debtorimage1" src="images/person1.jpg">
   </div>
-  <div class="namecontactadd">
-  <h6 style=" font-size: 17px;" class="debtorname1" id="debtorname1"><i class="fa fa-user"></i></h6>
-  <h6 class="debtorcontact1" id="debtorcontact1"><i class="fa fa-phone"></i></h6>
-  <h6 class="debtoraddress1" id="debtoraddress1"><i class="fa fa-map-marker-alt"></i></h6>
-</div>
+  <div style="padding: 0 20px 0 20px; margin: 10px 0;">
+    <div class="namecontactadd" style="background: rgb(10, 64, 103,0.4); padding: 5px 10px 15px 10px; border-radius: 10px;">
+      <h6 style=" font-size: 17px; margin:0;" class="debtorname1" id="debtorname1"><i class="fa fa-user"></i></h6>
+      <h6 class="debtorcontact1" style="padding: 5px 0 5px 0;" id="debtorcontact1"><i class="fa fa-phone"></i></h6>
+      <h6 class="debtoraddress1"style="margin: 0;" id="debtoraddress1"><i class="fa fa-map-marker-alt"></i></h6>
+    </div>
+  </div>
+  
 <div class="addDebtmodal" id="addDebtmodal">
 
 <!-- <form  id="addItemform" class="addItemform1"> -->
-        <div id="date-debtAdd" align="right">
+      <div style="padding: 15px; color: white;">
+         <div id="date-debtAdd" align="right">
+            
+          </div>
+            <hr style="background: white; padding: 0; width: 100%; margin: 5px 0 0 0;">
+           
+          <h6 style="color:white; text-align:center;  font-size: 15px; font-weight: bolder;">Add Items</h6>
+          <!-- <input style="background-color:rgb(239, 239, 239,0.2)" id="first_name" style="color:black;" type="text" placeholder=""> -->
           
-        </div>
-         
-        <h6 style="color:white; text-align:left;">Add Items</h6>
-        <!-- <input style="background-color:rgb(239, 239, 239,0.2)" id="first_name" style="color:black;" type="text" placeholder=""> -->
-        
-        <div class="addDebtForm">
-          <!-- <select class="addDebtForm-child" onchange="getAddDebtPrice()" id="items-debtAdd" name="items-debtAdd">
-          </select>
-          <input class="addDebtForm-child" type="text" id="price-debtAdd" value="Price" readonly>
-          <input class="addDebtForm-child" type="number" id="quantity-debtAdd" value="1"> -->
-        </div>
-        <button style="width: 90%; margin-top: 5px" id="button1" onclick="addMultipleItems(this);"><i class="fa fa-plus"></i></button>
-        <div id='addDebtButtons'>
+          <div class="addDebtForm" style=" width: 100%;">
+            <!-- <select class="addDebtForm-child" onchange="getAddDebtPrice()" id="items-debtAdd" name="items-debtAdd">
+            </select>
+            <input class="addDebtForm-child" type="text" id="price-debtAdd" value="Price" readonly>
+            <input class="addDebtForm-child" type="number" id="quantity-debtAdd" value="1"> -->
+          </div>
+      
+          <div id='addDebtButtons'> 
 
-        </div>  
+          </div>  
+
+      </div>
+         
 
         <!-- <h6 style="color:white; text-align:left; "> <i style="margin-right: 5px"   class="fa fa-dollar-sign"></i>Price</h6>
         <input style="background-color:rgb(239, 239, 239,0.2)" id="price-debtAdd"  style="color:black;" type="text" placeholder="" value="" readonly>
@@ -220,9 +228,12 @@ padding-left: 0;" class="container">
 
        
       <!-- </form> -->
-      
-      <input style=" box-shadow: 0px 2px 10px  rgba(49, 49, 49, 0.3); border: 1px solid rgba(64, 130, 178, 0) ;   position:absolute; left:5%; bottom:-24px; border-radius: 10px; font-weight: 600;   background:rgb(255, 255, 255); height: 40px;  width: 40%;color:rgba(64, 130, 178);" id="addItem" class="additems" type="button" value="Add more">
-      <input style=" box-shadow: 0px 2px 10px  rgba(49, 49, 49, 0.3); border: 1px solid rgba(64, 130, 178, 0);    position:absolute; right:5%; bottom:-24px; border-radius: 10px; font-weight: 600;   background:rgb(255, 255, 255); height: 40px;  width: 40%;color:rgba(64, 130, 178)" id="confirmItem" class="confirmItem" type="button" value="Confirm" onclick="addDebt();" disabled="true">
+         <button style="width: 100%; margin-top: 5px; background:rgb(10, 64, 103, 0.4);border: none; padding: 5px 10px 5px 10px;height: 40px;    border: 1px solid white;border-left: 1px solid rgb(10, 64, 103, 0.4);border-right: 1px solid rgb(10, 64, 103, 0.4);color: white;" id="button1" onclick="addMultipleItems(this);"><i class="fa fa-plus"></i></button>
+      <div style="width: 100%;">
+        <input style=" border: 1px solid rgba(64, 130, 178, 0) ;  font-weight: 600;   background:rgb(10, 64, 103, 0.4); height: 40px;  width: 50%;color:rgb(255, 255, 255); float: left;" id="addItem" class="additems" type="button" value="Add more">
+        <input style=" border: 1px solid rgba(64, 130, 178, 0);  font-weight: 600;   background:rgb(10, 64, 103,0.4); height: 40px;  width: 50%;color:rgb(255, 255, 255);  float: left;" id="confirmItem" class="confirmItem" type="button" value="Confirm" onclick="addDebt();" disabled="true">
+      </div>
+     
       
 
 </div>
@@ -231,10 +242,7 @@ padding-left: 0;" class="container">
 
 </div> 
 <div class="debtlist">
-  <div>
-    <button id="payButton" onclick="togglePayButton();">pay</button>
-    <button onclick="removeDebtor();">delete</button>
-  </div>
+  
   <div id="payInput" style="display: none;">
     <input type="number" id="paymentAmount" value="">
     <button onclick="payTextToggle();">continue</button>
@@ -252,13 +260,18 @@ padding-left: 0;" class="container">
       <div class="column2">Price</div>
       <div class="column3">Quantity</div>
     </div>
-    <div align="center" >
+   <!--  <div align="center" >
       <button onclick="toggleDebtList();"><font color="blue">SHOW/HIDE</font></button>
-    </div>
+    </div> -->
     <div id="showDebts">
 
     </div>
+    <div style="text-align: center;width: 100%">
+    <button style=" box-shadow: 0px 2px 10px  rgba(49, 49, 49, 0.3); border: 1px solid rgba(64, 130, 178, 0);  ; border-bottom-right-radius: : 10px; border-bottom-left-radius: 10px; font-weight: 600;   color:rgb(255, 255, 255); height: 40px;float: left;width: 50%;background:rgba(64, 130, 178);" id="payButton" onclick="togglePayButton();">pay</button>
+    <button style=" box-shadow: 5px 2px 10px  rgba(49, 49, 49, 0.3); border: 1px solid rgba(64, 130, 178, 0); border-bottom-right-radius: 10px;    font-weight: 600;   color:rgb(255, 255, 255); height: 40px;float: left;width: 50%;background: rgba(64, 130, 178);"  onclick="removeDebtor();">delete</button>
   </div>
+  </div>
+  
 </div>
 
 <input style="position:fixed; right:15px; bottom:65px; z-index:150;   background-color: rgb(64, 130, 178) ; height: 60px;  width: 60px;color: white; border-radius:50%; border:1px solid rgb(64, 130, 178); " id="addDebt" class="addDebt" type="button" value="">
@@ -304,4 +317,9 @@ padding-left: 0;" class="container">
 </div>
 
  </body>
+ <style type="text/css">
+  #items-debtAdd2 option {
+    width: 100%;
+  }
+ </style>
 </html>

@@ -697,10 +697,10 @@ function addMultipleItems(i){
         localStorage.setItem('currentButtonId', number);
         var data = '';
         var data2 = '';
-        data += '<button style="width: 90%; margin-top: 5px" id="button'+number+'" onclick="addMultipleItems(this);"><i class="fa fa-plus"></i></button>';
-        data2 += '<select class="addDebtForm-child" onchange="getAddDebtPrice('+number+')" id="items-debtAdd'+number+'" name="items-debtAdd"><option value="" selected="selected">Select an item</option></select>';
-        data2 += '<input class="addDebtForm-child" type="text" id="price-debtAdd'+number+'" value="" readonly>';
-        data2 += '<input class="addDebtForm-child" type="number" id="quantity-debtAdd'+number+'" value="1">';
+        data += '<button style="width: 100%; margin-top: 5px; background:rgb(10, 64, 103, 0.4);border: none; padding: 5px 10px 5px 10px;height: 40px;    border: 1px solid white;border-left: 1px solid rgb(10, 64, 103, 0.4);border-right: 1px solid rgb(10, 64, 103, 0.4);color: white;" id="button'+number+'" onclick="addMultipleItems(this);"><i class="fa fa-plus"></i></button>';
+        data2 += '<select class="addDebtForm-child" onchange="getAddDebtPrice('+number+')" id="items-debtAdd'+number+'" style="margin-top: 10px; margin-bottom: 10px;background-color: rgba(255, 255, 255, 0.4); outline: 0;border-width: 0 0 0 0;width: 100%;height: 100%;border-color: white;opacity: 1;padding: 10px 10px 10px 10px;border-radius: 15px;color: white;font-family:Helvetica Neue,sans-serif;font-weight: 400;" name="items-debtAdd"><option value="" selected="selected">Select an item</option></select>';
+        data2 += '<input class="addDebtForm-child" style="width:40%; background-color: rgba(255, 255, 255, 0.4); outline: 0;border-width: 0 0 0 0;border-color: white;opacity: 1;padding: 10px 10px 10px 10px;border-radius: 15px;color: white;font-family:Helvetica Neue,sans-serif;font-weight: 400;" type="text" id="price-debtAdd'+number+'" value="" readonly>';
+        data2 += '<input class="addDebtForm-child" style="width:40%; background-color: rgba(255, 255, 255, 0.4); outline: 0;border-width: 0 0 0 0;border-color: white;opacity: 1;padding: 10px 10px 10px 10px;border-radius: 15px;color: white;font-family:Helvetica Neue,sans-serif;font-weight: 400;" type="number" id="quantity-debtAdd'+number+'" value="1">';
         $('#addDebtButtons').append(data);
         $('.addDebtForm').append(data2);
         document.getElementById("confirmItem").disabled = false;
